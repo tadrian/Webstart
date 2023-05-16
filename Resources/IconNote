@@ -1,39 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <note default='true' class='icon' xmlns='http://www.lotus.com/dxl' version='12.0'
  maintenanceversion='2.1' replicaid='C1258962006EF9E0'>
-<noteinfo noteid='126' unid='36344AE665464081C125891C006739CF' sequence='0'>
+<noteinfo noteid='126' unid='36344AE665464081C125891C006739CF' sequence='6'>
 <created><datetime>20221218T194730,07+01</datetime></created>
-<modified><datetime dst='true'>20230510T085013,72+02</datetime></modified>
-<revised><datetime dst='true'>20230510T084909,64+02</datetime></revised>
-<lastaccessed><datetime dst='true'>20230510T085013,71+02</datetime></lastaccessed>
+<modified><datetime dst='true'>20230516T135436,37+02</datetime></modified>
+<revised><datetime dst='true'>20230516T135436,36+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20230516T135436,36+02</datetime></lastaccessed>
 <addedtofile><datetime dst='true'>20230509T152456,48+02</datetime></addedtofile></noteinfo>
-<updatedby><name>CN=Thomas Adrian/O=Max AB</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name><name
->CN=domino03/O=Consili</name><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
 <item name='IconBitmap' summary='true'>
 <rawitemdata type='6'>
 AiAgAQAA///////wD///4Af//8AD//4AAH/8AAA/+AAAH/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAA
@@ -49,17 +23,16 @@ d30fAAAAAPHXd33Xd3d913d9HwAAAADx13d913d3fdd3fR8AAAAA8R3d0dd3d30d3dEfAAAAAA8R
 EREdd3fRERER8AAAAAAA////Ed3dEf///wAAAAAAAAAAAPERER8AAAAAAAAAAAAAAAAP///wAAAA
 AAAAUEECICABAAD/////+A4DgA==
 </rawitemdata></item>
-<item name='$DefaultXPage'><text>start.xsp</text></item>
-<item name='$DefaultFrameset'><text>Start</text></item>
 <item name='$LaunchXPageRunOnServer'><text>0</text></item>
-<item name='$FlagsNoRefresh'><text/></item>
 <item name='$TemplateServerName'><text>CN=Thomas Adrian/O=Consili</text></item>
 <item name='$LargeSummary'><text>0</text></item>
-<item name='$Flags'><text>J7F!nzZHqN</text></item>
 <item name='$PIRCRefreshModTime'><datetime dst='true'>20230509T151946,12+02</datetime></item>
 <item name='$TemplateModTime'><datetime dst='true'>20230412T124650,77+02</datetime></item>
 <item name='$TemplateFileName'><text>c:\Notes\Data\webstart_v1.ntf</text></item>
-<item name='$TITLE'><text>Bookm
-</text></item>
-<item name='$Daos'><text>0</text></item></note>
+<item name='$Daos'><text>0</text></item>
+<item name='$DefaultFrameset'><text>Start</text></item>
+<item name='$DefaultXPage'><text>start.xsp</text></item>
+<item name='$TITLE'><text>Bookm</text></item>
+<item name='$Flags'><text>Jz7qNHZFn!</text></item>
+<item name='$FlagsNoRefresh'><text>rv</text></item></note>
 

@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <note class='view' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.1'
  replicaid='C1258962006EF9E0'>
-<noteinfo noteid='3c2a' unid='6F14E58E2265CC9AC125896200623BA3' sequence='10'>
+<noteinfo noteid='3c2a' unid='6F14E58E2265CC9AC125896200623BA3' sequence='11'>
 <created><datetime>20230226T185257,95+01</datetime></created>
-<modified><datetime dst='true'>20230509T152530,62+02</datetime></modified>
-<revised><datetime dst='true'>20230403T204755,10+02</datetime></revised>
-<lastaccessed><datetime dst='true'>20230514T204223,51+02</datetime></lastaccessed>
+<modified><datetime dst='true'>20230516T135458,49+02</datetime></modified>
+<revised><datetime dst='true'>20230516T135458,48+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20230516T135458,48+02</datetime></lastaccessed>
 <addedtofile><datetime dst='true'>20230509T152530,61+02</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<wassignedby><name>CN=Thomas Adrian/O=Consili</name></wassignedby>
 <item name='$FormulaClass' sign='true'><text>1</text></item>
 <item name='$LogViewUpdates' sign='true'><text>1</text></item>
 <item name='$Index' sign='true'><text/></item>

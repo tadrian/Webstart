@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.1'
  replicaid='C1258962006EF9E0'>
-<noteinfo noteid='3bd6' unid='E70BC65A6B319255C125895500626426' sequence='69'>
+<noteinfo noteid='3bd6' unid='E70BC65A6B319255C125895500626426' sequence='70'>
 <created><datetime>20230213T185441,66+01</datetime></created>
-<modified><datetime dst='true'>20230509T152530,38+02</datetime></modified>
-<revised><datetime dst='true'>20230403T204754,71+02</datetime></revised>
-<lastaccessed><datetime dst='true'>20230509T152530,37+02</datetime></lastaccessed>
+<modified><datetime dst='true'>20230516T135457,98+02</datetime></modified>
+<revised><datetime dst='true'>20230516T135457,97+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20230516T135457,97+02</datetime></lastaccessed>
 <addedtofile><datetime dst='true'>20230509T152530,37+02</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<wassignedby><name>CN=Thomas Adrian/O=Consili</name></wassignedby>
 <item name='$Comment' sign='true'><text/></item>
 <item name='$HTMLCode' sign='true'>
 <rawitemdata type='1'>

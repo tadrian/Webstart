@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.1'
  replicaid='C1258962006EF9E0'>
-<noteinfo noteid='3c32' unid='67DB39623308F244C1258962004F79E8' sequence='12'>
+<noteinfo noteid='3c32' unid='67DB39623308F244C1258962004F79E8' sequence='13'>
 <created><datetime>20230226T152805,52+01</datetime></created>
-<modified><datetime dst='true'>20230509T152530,64+02</datetime></modified>
-<revised><datetime dst='true'>20230403T204819,77+02</datetime></revised>
-<lastaccessed><datetime dst='true'>20230509T152530,63+02</datetime></lastaccessed>
+<modified><datetime dst='true'>20230516T135523,56+02</datetime></modified>
+<revised><datetime dst='true'>20230516T135523,55+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20230516T135523,55+02</datetime></lastaccessed>
 <addedtofile><datetime dst='true'>20230509T152530,63+02</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<wassignedby><name>CN=Thomas Adrian/O=Consili</name></wassignedby>
 <item name='$Comment' sign='true'><text/></item>
 <item name='DateCreated' summary='false' sign='true'>
 <rawitemdata type='400'>

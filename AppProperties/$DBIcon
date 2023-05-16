@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.1'
  replicaid='C1258962006EF9E0'>
-<noteinfo noteid='3c22' unid='14257753AFB8A7ACC125898F003B15EF' sequence='6'>
+<noteinfo noteid='3c22' unid='14257753AFB8A7ACC125898F003B15EF' sequence='7'>
 <created><datetime dst='true'>20230412T124522,39+02</datetime></created>
-<modified><datetime dst='true'>20230509T152530,60+02</datetime></modified>
-<revised><datetime dst='true'>20230412T124522,41+02</datetime></revised>
-<lastaccessed><datetime dst='true'>20230509T152530,59+02</datetime></lastaccessed>
+<modified><datetime dst='true'>20230516T135523,98+02</datetime></modified>
+<revised><datetime dst='true'>20230516T135523,97+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20230516T135523,97+02</datetime></lastaccessed>
 <addedtofile><datetime dst='true'>20230509T152530,59+02</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<wassignedby><name>CN=Thomas Adrian/O=Consili</name></wassignedby>
 <item name='$TITLE'><text>$DBIcon</text></item>
 <item name='$Flags'><text>34Ci~Q</text></item>
 <item name='$ImagesWide' sign='true'><number>1</number></item>

@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.1'
  replicaid='C1258962006EF9E0'>
-<noteinfo noteid='3c82' unid='AE7A311779406224C1258974003F2332' sequence='7'>
+<noteinfo noteid='3c82' unid='AE7A311779406224C1258974003F2332' sequence='8'>
 <created><datetime>20230316T122937,78+01</datetime></created>
-<modified><datetime dst='true'>20230509T152531,77+02</datetime></modified>
-<revised><datetime dst='true'>20230403T205013,79+02</datetime></revised>
-<lastaccessed><datetime dst='true'>20230509T152531,76+02</datetime></lastaccessed>
+<modified><datetime dst='true'>20230516T135523,76+02</datetime></modified>
+<revised><datetime dst='true'>20230516T135523,75+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20230516T135523,75+02</datetime></lastaccessed>
 <addedtofile><datetime dst='true'>20230509T152531,76+02</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<wassignedby><name>CN=Thomas Adrian/O=Consili</name></wassignedby>
 <item name='$TITLE' sign='true'><text>Start</text></item>
 <item name='$Comment' sign='true'><text/></item>
 <item name='$DesignerVersion'><text>8.5.3</text></item>

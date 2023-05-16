@@ -4,7 +4,8 @@
 	<xp:this.resources>
 	
 		
-	<!-- 	
+	<!--
+	Test 	
 		<xp:script src="/jqueryui/jquery-ui.touch-punch.js" clientSide="true"></xp:script>
 	<xp:script src="/jqueryui/jquery-ui.js" clientSide="true"></xp:script>
 		<xp:script src="/highjack.js" clientSide="true"></xp:script>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<xp:panel tagName="div" id="datapane" style="" styleClass="">
+	<xp:this.data>
+				<xp:dominoDocument var="boxd" formName="Box" computeWithForm="onsave" action="openDocument" documentId="#{param.unid}"></xp:dominoDocument>
+				<xp:dominoDocument var="file" formName="Bookmark" computeWithForm="onsave"></xp:dominoDocument>
+			</xp:this.data>
+		
+		<xe:dialog id="newFileDlg" title="New File in '#{boxd.title}'">
+			
+			<xe:dialogContent id="dialogContent2">
+				<xp:panel id="dlgPanel" styleClass="">
+					<xp:inputText id="inputText1" value="#{file.Title}">
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="File title"></xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+					<xp:fileUpload id="fileUpload1" value="#{file.Body}"></xp:fileUpload>
+					<xp:messages id="messages1"></xp:messages>
+					<xe:dialogButtonBar id="dialogButtonBar2">
+					<xp:button value="Close" id="button1">
+						<xp:eventHandler event="onclick" submit="false">
+							<xp:this.script><![CDATA[XSP.closeDialog('#{id:newFileDlg}')
+]]></xp:this.script>
+						</xp:eventHandler></xp:button>
+						<xp:button value="Save" id="xSave">
+							<xp:eventHandler event="onclick" submit="true" refreshMode="partial" disableValidators="true" refreshId="bref">
+								<xp:this.action><![CDATA[#{javascript:try{
+
+	var boxid = boxd.getItemValue("UniqueID")
+	file.replaceItemValue("UserID",getUserId())
+	file.replaceItemValue("BoxID",boxid)
+	file.replaceItemValue("TabID",boxd.getItemValue("BoxId"));
+	file.replaceItemValue("Type","3");
+	file.save()
+	
+	
+	var bmid = file.getItemValueString("UniqueID")
+	var v = boxd.getItemValue("BookmarkOrder")
+	if(!v.isEmpty()){
+		if(!v.contains(bmid)){
+			v.add(bmid)
+			boxd.replaceItemValue("BookmarkOrder",v)
+			boxd.save()
+		}
+	}
+	refreshDataPanel("datapane")
+	var c = getComponent("newFileDlg")
+	c.hide()
+
+}catch(e){
+	print("error " + e)
+	com.consili.Logger.LogError(e.toString())
+}
+}]]></xp:this.action>
+							</xp:eventHandler>
+						</xp:button>
+					</xe:dialogButtonBar>
+				</xp:panel>
+			</xe:dialogContent>
+		</xe:dialog>
+	</xp:panel>
+</xp:view>

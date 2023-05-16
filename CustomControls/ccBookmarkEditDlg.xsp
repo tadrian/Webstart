@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<xe:dialog id="boxEditDlg" title="Box Edit Dialog">
+		<xe:dialogContent>
+			<xp:panel>
+		
+			<xe:dialogButtonBar id="dialogButtonBar1"></xe:dialogButtonBar>
+			</xp:panel>
+		</xe:dialogContent>
+	</xe:dialog>
+</xp:view>

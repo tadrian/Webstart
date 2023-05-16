@@ -1,0 +1,69 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+%REM
+	Library commonLS
+	Created Feb 24, 2023 by Thomas Adrian/Consili
+	Description: Comments for Library
+%END REM
+Option Public
+Option Declare
+
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub openDoc(key)
+Declare Sub LookForErrors
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+
+'++LotusScript Development Environment:2:2:openDoc:5:8
+%REM
+	Sub openDoc
+	Description: Comments for Sub
+%END REM
+Sub openDoc(key)
+	
+	Dim doc As NotesDocument,d As NotesDocument
+	Dim db As NotesDatabase
+	Dim session As New NotesSession
+	Set db = session.currentdatabase
+	Dim ws As New notesuiworkspace
+	
+	Set d = db.getView("LookupKey").getDocumentByKey(key,True)
+	Call ws.EditDocument(False,d)
+	
+	
+End Sub
+
+'++LotusScript Development Environment:2:2:LookForErrors:2:8
+
+Sub LookForErrors
+	
+	Dim doc As NotesDocument,d As NotesDocument
+	Dim db As NotesDatabase
+	Dim session As New NotesSession
+	Set db = session.currentdatabase
+	
+	
+	' Tab - BoxOrderCol1
+	' Page - TabOrder
+	' Box - BookmarkOrder
+	
+	Dim dc As NotesDocumentCollection
+	Dim key As String
+	key = "Box"
+	Set dc = db.getView("Lookupkey").getAllDocumentsByKey(key,True)
+	
+	
+	
+	
+	key = "Page"
+	Set dc = db.getView("Lookupkey").getAllDocumentsByKey(key,True)
+
+
+	key = "Tab"
+	Set dc = db.getView("Lookupkey").getAllDocumentsByKey(key,True)
+	
+	
+	'Set d = db.getView("LookupKey").getDocumentByKey(key,True)
+	
+	
+End Sub

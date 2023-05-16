@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<xp:panel tagName="div" id="datapane" style="" styleClass="">
+		<xe:dialog id="editFileTitle" title="Rename title">
+			<xe:dialogContent>
+				<xp:panel id="file" styleClass="">
+					<xp:this.data>
+						<xp:dominoDocument var="file" formName="Box" computeWithForm="onsave" action="editDocument" documentId="#{param.unid}">
+						</xp:dominoDocument>
+					</xp:this.data>
+					<xp:inputText id="inputText3" value="#{file.Title}">
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="Enter title"></xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+					<xe:dialogButtonBar id="dialogButtonBar1">
+					<xp:button value="Close" id="button2">
+						<xp:eventHandler event="onclick" submit="false">
+							<xp:this.script><![CDATA[XSP.closeDialog('#{id:editFileTitle}')
+]]></xp:this.script>
+						</xp:eventHandler></xp:button>
+						<xp:button value="Save" id="button1">
+							<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref">
+								<xp:this.action><![CDATA[#{javascript:
+file.save()
+viewScope.update = 1
+
+var c = getComponent("editFileTitle")
+c.hide()
+
+
+}]]></xp:this.action>
+							</xp:eventHandler>
+						</xp:button>
+					</xe:dialogButtonBar>
+				</xp:panel>
+			</xe:dialogContent>
+		</xe:dialog>
+	</xp:panel>
+</xp:view>

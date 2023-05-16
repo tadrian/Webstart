@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:panel id="pageref">
+		<xc:ccRPC></xc:ccRPC>
+		<div id="tabs" class="ui-grid">
+			<xp:panel tagName="ul" styleClass="sortableTabs">
+				<xp:this.attrs>
+					<xp:attr name="pageid">
+						<xp:this.value><![CDATA[#{javascript:getPageDoc().getItemValueString("UniqueID")}]]></xp:this.value>
+					</xp:attr>
+				</xp:this.attrs>
+				<xp:repeat id="repeat1" rows="30" var="tabs" disableOutputTag="true">
+					<xp:this.value><![CDATA[#{javascript:BeanMethods.getTabCollection()
+
+}]]></xp:this.value>
+					<xp:panel>
+						<xp:this.data>
+							<xp:dominoDocument var="tabdoc" action="openDocument" formName="Tab" documentId="#{javascript:tabs.getUniversalID()}"
+								computeWithForm="onsave">
+							</xp:dominoDocument>
+						</xp:this.data>
+						<xp:panel styleClass="ui-state-default" tagName="li" id="items">
+							<xp:this.attrs>
+								<xp:attr name="tabid" value="#{tabdoc.uniqueid}"></xp:attr>
+							</xp:this.attrs>
+							<a href="##{tabdoc.UniqueID}">
+								<span>
+									<!-- <i class="fa fa-house"></i> -->
+									<xp:text escape="true" id="computedField1" value="#{tabdoc.Title}"></xp:text>
+								</span>
+							</a>
+						</xp:panel>
+					</xp:panel>
+				</xp:repeat>
+			</xp:panel>
+			<xp:repeat id="repeat2" rows="30" var="trep" disableOutputTag="true" indexVar="index">
+				<xp:this.value><![CDATA[#{javascript:BeanMethods.getTabCollection()
+
+}]]></xp:this.value>
+				<xp:panel>
+					<xp:this.data>
+						<xp:dominoDocument var="tabdoc2" action="openDocument" formName="Tab" documentId="#{javascript:trep.getUniversalID()}">
+						</xp:dominoDocument>
+					</xp:this.data>
+					<div id="#{tabdoc2.UniqueID}" class="tabWidth" cols="#{javascript:tabdoc2.getItemValueInteger('Columns').toFixed(0)}">
+						<xc:ccTabContent TabId="#{tabdoc2.UniqueID}" repeatIndex="#{javascript:index}"></xc:ccTabContent>
+					</div>
+				</xp:panel>
+			</xp:repeat>
+		</div>
+	</xp:panel>
+</xp:view>

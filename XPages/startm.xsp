@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+
+	<xp:this.resources>
+	
+		
+	<!-- 	
+		<xp:script src="/jqueryui/jquery-ui.touch-punch.js" clientSide="true"></xp:script>
+	<xp:script src="/jqueryui/jquery-ui.js" clientSide="true"></xp:script>
+		<xp:script src="/highjack.js" clientSide="true"></xp:script>
+		 -->
+		<xp:script src="/startSSJS.jss" clientSide="false"></xp:script>
+		<xp:script src="/commonJSm.js" clientSide="true"></xp:script>
+	
+		
+		<xp:styleSheet href="/jqueryui/jquery-ui.css"></xp:styleSheet>
+		<xp:styleSheet href="/themes.css"></xp:styleSheet>
+		<xp:styleSheet href="/default.css"></xp:styleSheet>
+
+		<!--  prism.js is loaded in body -->
+
+	</xp:this.resources>
+
+	<xp:this.beforePageLoad><![CDATA[#{javascript:try{
+	var ud = getCurrentUserDoc()
+	if(ud==null){
+		context.redirectToPage("login")
+	}
+	
+	var userid = BeanMethods.userid;
+	if(getPageDoc()==null){
+		pd = database.createDocument()
+		pd.replaceItemValue("Form","Page")
+		pd.replaceItemValue("UserID",userid)
+		pd.computeWithForm(false,false)
+		pd.save()
+		
+	}
+	
+	var key = "Tab_UID_" + userid
+	var tmpd = database.getView("LookupKey").getDocumentByKey(key,true)
+	if(tmpd==null){
+		var d = database.createDocument()
+		d.replaceItemValue("Form","Tab")
+		d.replaceItemValue("UserID",userid)
+		d.replaceItemValue("Title","Tab1")
+		d.computeWithForm(false,false)
+		d.save()
+	}
+
+}catch(e){
+	Logger.LogError(e.toString())
+}}]]></xp:this.beforePageLoad>
+
+	<xp:this.pageTitle><![CDATA[#{javascript:var title = BeanMethods.getPageDoc().getItemValueString("Title") 
+title==""? "WEB START":title}]]></xp:this.pageTitle>
+	<xc:ccLoadFontAwesome></xc:ccLoadFontAwesome>
+	
+	<script src="./prism.js"></script>
+	<xc:ccRPC></xc:ccRPC>
+
+	<xc:ccKeepSessionAlive loaded="false"></xc:ccKeepSessionAlive>
+
+	<xe:firebugLite loaded="false"></xe:firebugLite>
+	<xc:ccDebugToolbar defaultCollapsed="false" collapseTo="left" loaded="false"></xc:ccDebugToolbar>
+	<xc:ccDebug loaded="false"></xc:ccDebug>
+	<xp:panel tagName="div" style="" id="pane" styleClass="container-fluid">
+
+
+		<xc:ccHeaderMobile></xc:ccHeaderMobile>
+		
+
+		<xp:panel tagName="div" id="bref" styleClass="">
+<xc:ccPageContentMobile></xc:ccPageContentMobile>
+			<xe:dynamicContent id="dynC">
+				<xp:this.facets>
+					<xp:span xp:key="bm">
+						
+					</xp:span>
+					<xp:span xp:key="search">
+						<xc:ccSearch></xc:ccSearch>
+					</xp:span>
+				</xp:this.facets>
+
+			</xe:dynamicContent>
+
+
+		</xp:panel>
+
+	</xp:panel>
+	
+	<xc:ccMoveBoxToNewTabDlg></xc:ccMoveBoxToNewTabDlg>
+	<xc:ccChangeBoxColorDlg></xc:ccChangeBoxColorDlg>
+	<xc:ccMoveBmToNewBoxDlg></xc:ccMoveBmToNewBoxDlg>
+	<xc:ccAddFileDlg></xc:ccAddFileDlg> 
+	<xc:ccAddTextDlg></xc:ccAddTextDlg>
+	<xc:ccAddBookmarkDlg></xc:ccAddBookmarkDlg>
+	<xc:ccEditTextDlg></xc:ccEditTextDlg>
+	<xc:ccEditFileDlg></xc:ccEditFileDlg> 
+	<xc:ccRenameBox></xc:ccRenameBox>
+	
+	
+</xp:view>

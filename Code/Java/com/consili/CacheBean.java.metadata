@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.1" replicaid="C1258962006EF9E0" version="12.0">
+<noteinfo noteid="3d2e" sequence="55" unid="6134DDFA4087B259C1258996003AF60D">
+<created><datetime dst="true">20230419T124400,77+02</datetime></created>
+<modified><datetime dst="true">20230509T152535,05+02</datetime></modified>
+<revised><datetime dst="true">20230509T150649,76+02</datetime></revised>
+<lastaccessed><datetime dst="true">20230509T152535,04+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230509T152535,04+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<item name="$Flags"><text>34567Cg~[P</text></item>
+<item name="$TITLE"><text>com/consili/CacheBean.java</text></item>
+
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>com/consili/CacheBean.java</text></item>
+
+</note>

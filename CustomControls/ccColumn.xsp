@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<div class="column col#{compositeData.Column}" id="col_#{compositeData.TabId}#{compositeData.Column}">
+		<xp:text escape="false" tagName="div" id="computedField4" rendered="#{javascript:sessionScope.coledit !=1 }">
+			<xp:this.value><![CDATA[#{javascript:var td = BeanMethods.getTabDoc(compositeData.TabId)
+var fld = "Col" + compositeData.Column + "Title";
+var txt = td.getItemValueString(fld) 
+if(txt!=""){
+	return "<div class='columnHeader'>" + txt + "</div>"
+}else{
+	return txt
+}
+}]]></xp:this.value>
+		</xp:text>
+		<xp:panel tagName="ul" styleClass="sortableBoxes" disableOutputTag="true" id="colref">
+			<xp:this.attrs>
+				<xp:attr name="tabid" value="#{javascript:compositeData.TabId}"></xp:attr>
+			</xp:this.attrs>
+			<xp:panel tagName="div" style="" id="ColumnHeader" rendered="#{javascript:sessionScope.coledit ==1}">
+				<xp:inputText id="inputText1" style="width:300px;display:inline-block;margin-right:5px">
+					<xp:this.defaultValue><![CDATA[#{javascript:var td = BeanMethods.getTabDoc(compositeData.TabId)
+var fld = "Col" + compositeData.Column + "Title";
+return td.getItemValueString(fld)}]]></xp:this.defaultValue>
+				</xp:inputText>
+				<xp:link escape="true" text="" id="link1">
+					<i class="fa fa-save"></i>
+					<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="portletwrapper">
+						<xp:this.action><![CDATA[#{javascript:var td = BeanMethods.getTabDoc(compositeData.TabId)
+var fld = "Col" + compositeData.Column + "Title";
+var v = getComponent("inputText1").getValue()
+td.replaceItemValue(fld,v)
+td.save()
+}]]></xp:this.action>
+						<xp:this.script><![CDATA[x$("#{id:inputText1}").css("background-color","#AFE6C8")]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:link>
+			</xp:panel>
+			<xp:repeat id="repeatBoxes" rows="100" var="box" disableOutputTag="true" indexVar="i"
+				value="#{javascript:BeanMethods.getColumnBoxes(compositeData.TabId, compositeData.TabSortOrderField, compositeData.Column); }">
+				<xp:panel styleClass="ui-widget-content" tagName="li" id="items" disableOutputTag="true">
+					<xp:this.data>
+						<xp:dominoDocument var="boxd" action="editDocument" documentId="#{javascript:box.getNoteID()}" formName="Box"
+							computeWithForm="onsave" scope="request">
+						</xp:dominoDocument>
+					</xp:this.data>
+					<xp:panel id="portletwrapper" styleClass="portletwrapper">
+						<div class="portlet" id="#{boxd.UniqueID}">
+							<xc:ccPopBoxHeader TabId="#{compositeData.TabId}"></xc:ccPopBoxHeader>
+							<xp:panel tagName="div">
+								
+								<xp:this.styleClass><![CDATA[#{javascript:var color = boxd.getItemValueString("HeaderTheme")
+return color!="" ? "portlet-header " + color : "portlet-header BgDefault"
+
+}]]></xp:this.styleClass>
+								<xp:panel id="boxheader" disableOutputTag="true">
+									<xp:text escape="true" id="computedField1" tagName="div" style="display:inline-block" value="#{boxd.Title}"
+										title="#{boxd.Title}">
+									</xp:text>
+									<!-- 
+									<xp:inputText id="inputText4" style="display:none;width:70%" value="#{boxd.Title}">
+										<xp:eventHandler event="onkeydown" submit="true" refreshMode="complete">
+											<xp:this.script><![CDATA[if (event.keyCode === 13) {
+	return true;
+}
+return false;]]></xp:this.script>
+											<xp:this.action>
+												<xp:saveDocument var="boxd"></xp:saveDocument>
+											</xp:this.action>
+										</xp:eventHandler>
+									</xp:inputText>
+									 -->
+									<span style="float:right;margin-right:10px">
+										<xp:link escape="true" text="" id="link6" style="color:#FFF;margin-top:2px">
+											<xp:this.rendered><![CDATA[#{javascript:try{
+BeanMethods.isOutOfOrder(boxd.getItemValueString("UniqueId"))
+}catch(e){
+	Logger.LogEvent("isOutOfOrder error " + e)
+}}]]></xp:this.rendered>
+											<i class="fa fa-refresh"></i>
+											<xp:eventHandler event="onclick" submit="true" refreshMode="complete" disableValidators="true">
+												<xp:this.action><![CDATA[#{javascript:try{
+	var id = boxd.getItemValueString("UniqueId")
+	MakeSureAllBookmarkInOrderField(id)
+	//var txt = "refreshPage(\"#{id:portletWrapper}\")"
+	//view.postScript(txt)
+
+}catch(e){
+	Logger.LogEvent("repeatBoomarks error " + e)
+}}]]></xp:this.action>
+											</xp:eventHandler>
+										</xp:link>
+										<xp:link escape="true" text="" id="link4">
+											<i class="fa fa-bars" style="color:#FFF;margin-top:2px"></i>
+											<xp:eventHandler event="onclick" submit="false">
+												<xp:this.script><![CDATA[XSP.openMenu(thisEvent,#{javascript:getComponent('popheader').getMenuCtor()})
+]]></xp:this.script>
+											</xp:eventHandler>
+										</xp:link>
+										<xp:panel tagName="i"
+											styleClass="#{boxd.minimized == '1' ? 'fa fa-chevron-up toggle' : 'fa fa-chevron-down toggle'}">
+										</xp:panel>
+									</span>
+								</xp:panel>
+							</xp:panel>
+							<xp:panel styleClass="portlet-content" tagName="div" id="BookmarkPanel"
+								style="#{boxd.Minimized == '1' ? 'display:none' : ''}">
+								<xc:ccAddTextQuick boxid="#{boxd.UniqueID}" rendered="#{boxd.QuickTextOpen == '1'}"></xc:ccAddTextQuick>
+								<xc:ccBoxContent></xc:ccBoxContent>
+							</xp:panel>
+						</div>
+					</xp:panel>
+				</xp:panel>
+			</xp:repeat>
+		</xp:panel>
+	</div>
+</xp:view>

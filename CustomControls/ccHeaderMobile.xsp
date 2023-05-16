@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:this.pageTitle><![CDATA[#{javascript:var title = BeanMethods.getPageDoc().getItemValueString("Title");
+title==""? "Web Start":title}]]></xp:this.pageTitle>
+	<div class="row header">
+		<div class="col-md-12">
+			<i class="fa fa-home"></i>
+			<xp:link escape="true" id="link6">
+				<xp:this.text><![CDATA[#{javascript:var title = BeanMethods.getPageDoc().getItemValueString("Title") 
+title==""? "WEB START":title}]]></xp:this.text>
+			</xp:link>
+		</div>
+	</div>
+</xp:view>

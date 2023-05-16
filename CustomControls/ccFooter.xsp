@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<footer class="footer">
+		<div class="container">
+			<p>
+				<xp:text value="#{javascript:@Year(@Today()).toFixed(0)}" escape="true" id="computedField4" tagName="div" style="" styleClass="">
+
+</xp:text> 
+			</p>
+			<ul class="list-inline">
+				<li class="list-inline-item">
+					<a href="#">Privacy</a>
+				</li>
+				<li class="list-inline-item">
+					<a href="#">Terms</a>
+				</li>
+				<li class="list-inline-item">
+					<a href="#">FAQ</a>
+				</li>
+			</ul>
+		</div>
+	</footer>
+</xp:view>
+

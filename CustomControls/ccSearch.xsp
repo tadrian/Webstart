@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+<xp:panel tagName="div" id="searchpane" style="" styleClass="searchpane">
+
+		
+
+		<div class="container">
+			
+			
+			<xp:link escape="true" text="Clear" id="link1" rendered="#{javascript:sessionScope.query != null}">
+				<xp:eventHandler event="onclick" submit="true" refreshMode="complete">
+					<xp:this.action><![CDATA[#{javascript:sessionScope.remove("query")}]]></xp:this.action>
+				</xp:eventHandler>
+			</xp:link>
+			<xp:inputText id="inputText1" defaultValue="#{javascript:sessionScope.query}">
+				<xp:this.attrs>
+					<xp:attr name="placeholder" value="enter search query"></xp:attr>
+				</xp:this.attrs>
+				<xp:eventHandler event="onkeydown" submit="true" refreshMode="complete">
+					<xp:this.action><![CDATA[#{javascript:sessionScope.query = getComponent("inputText1").getValue()
+}]]></xp:this.action>
+					<xp:this.script><![CDATA[if (event.keyCode === 13) {return true;} return false;]]></xp:this.script>
+				</xp:eventHandler>
+			</xp:inputText>
+			<xp:text escape="false" id="computedField1" tagName="div" style="" styleClass="">
+
+
+				<xp:this.value><![CDATA[#{javascript:var q = sessionScope.query
+q == null ? "No query" : BeanMethods.Search(q)
+}]]></xp:this.value>
+			</xp:text>
+
+
+
+		</div>
+	</xp:panel>
+</xp:view>

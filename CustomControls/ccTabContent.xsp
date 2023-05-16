@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+	
+	<xp:panel id="bs" tagName="div" disableOutputTag="true" >
+		
+		<xp:panel styleClass="edit" tagName="div" id="editbar">
+			<xp:this.style><![CDATA[#{javascript:sessionScope.edit ==null ? "display:none" : "display:block"}]]></xp:this.style>
+			<xc:ccTabActions TabId="#{compositeData.TabId}"></xc:ccTabActions>
+		</xp:panel>
+		<xc:ccColumn TabId="#{compositeData.TabId}" Column="1" TabSortOrderField="BoxOrderCol1"></xc:ccColumn>
+		<xc:ccColumn TabId="#{compositeData.TabId}" Column="2" TabSortOrderField="BoxOrderCol2">
+			<xc:this.rendered><![CDATA[#{javascript:var td = BeanMethods.getTabDoc(compositeData.TabId)
+td.getItemValueInteger("Columns")==2 || td.getItemValueInteger("Columns")==3}]]></xc:this.rendered>
+		</xc:ccColumn>
+		<xc:ccColumn TabId="#{compositeData.TabId}" Column="3" TabSortOrderField="BoxOrderCol3">
+		<xc:this.rendered><![CDATA[#{javascript:var td = BeanMethods.getTabDoc(compositeData.TabId)
+td.getItemValueInteger("Columns")==3}]]></xc:this.rendered>
+		</xc:ccColumn>
+	</xp:panel>
+
+</xp:view>

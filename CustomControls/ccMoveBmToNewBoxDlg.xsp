@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<xp:this.data>
+		<xp:dominoDocument var="bmdoc" action="editDocument" documentId="#{param.unid}"></xp:dominoDocument>
+	</xp:this.data>
+	
+	<xe:dialog id="moveBmToNewBoxDlg" title="#{bmdoc.title}">
+		<xe:dialogContent>
+			<xp:panel>
+				<p>Select box to move this bookmark to</p>
+				<p>
+				<xp:comboBox id="comboBox1" value="" style="">
+					<xp:selectItems>
+						<xp:this.value><![CDATA[#{javascript:return BeanMethods.getUserBoxes()}]]></xp:this.value>
+					</xp:selectItems>
+				</xp:comboBox>
+				</p>
+				<xe:dialogButtonBar id="dialogButtonBar1">
+				<xp:button value="Close" id="button1">
+						<xp:eventHandler event="onclick" submit="false">
+							<xp:this.script><![CDATA[XSP.closeDialog('#{id:moveBmToNewBoxDlg}')
+]]></xp:this.script>
+						</xp:eventHandler></xp:button>
+					<xp:button value="Move" id="button3">
+									<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true">
+										<xp:this.action><![CDATA[#{javascript:var bmid = bmdoc.getItemValueString("UniqueID");
+var newboxid = getComponent("comboBox1").getValue();
+var oldboxid = bmdoc.getItemValueString("BoxID");
+BeanMethods.moveBookmarkToNewBox(bmid, oldboxid,  newboxid) 
+
+getComponent("moveBmToNewBoxDlg").hide()}]]></xp:this.action>
+									</xp:eventHandler></xp:button>
+				</xe:dialogButtonBar>
+			</xp:panel>
+		</xe:dialogContent>
+	</xe:dialog>
+</xp:view>

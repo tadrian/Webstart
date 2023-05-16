@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.1" replicaid="C1258962006EF9E0" version="12.0">
+<noteinfo noteid="505e" sequence="4" unid="E439BF9E181D12A2C12589AE002C41E4">
+<created><datetime dst="true">20230513T100324,52+02</datetime></created>
+<modified><datetime dst="true">20230513T100349,36+02</datetime></modified>
+<revised><datetime dst="true">20230513T100349,35+02</datetime></revised>
+<lastaccessed><datetime dst="true">20230513T100349,35+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230513T100324,52+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Thomas Adrian/O=Consili</name><name>CN=Thomas Adrian/O=Max AB</name><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<item name="$Flags"><text>34567Cg~[</text></item>
+<item name="$TITLE"><text>com/paulwithers/openLog/OpenLogErrorHolder.java</text></item>
+
+
+
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>com/paulwithers/openLog/OpenLogErrorHolder.java</text></item>
+
+</note>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<xp:this.data>
+		<xp:dominoDocument var="boxdoc" action="editDocument" documentId="#{param.unid}"></xp:dominoDocument>
+	</xp:this.data>
+	<xe:dialog id="moveBoxToNewTabDlg" title="Move box '#{boxdoc.title}' to new tab">
+		<xe:dialogContent>
+			<xp:panel>
+				
+				
+				<p>Select tab to move this box to</p>
+				<p>
+				<xp:comboBox id="comboBox1" value="" style="">
+					<xp:selectItems>
+						<xp:this.value><![CDATA[#{javascript:return BeanMethods.getUserTabs()}]]></xp:this.value>
+					</xp:selectItems>
+				</xp:comboBox>
+				</p>
+				<xe:dialogButtonBar id="dialogButtonBar1">
+					<xp:button value="Close" id="button1">
+						<xp:eventHandler event="onclick" submit="false">
+							<xp:this.script><![CDATA[XSP.closeDialog('#{id:moveBoxToNewTabDlg}')
+]]></xp:this.script>
+						</xp:eventHandler></xp:button>
+					<xp:button value="Move" id="button3">
+						<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref">
+							<xp:this.action><![CDATA[#{javascript:
+var newtabid = getComponent("comboBox1").getValue();
+var oldtabid = boxdoc.getItemValueString("TabID");
+var oldboxid = boxdoc.getItemValueString("UniqueID");
+
+BeanMethods.moveBoxToNewTab(oldboxid , oldtabid , newtabid)
+getComponent("moveBoxToNewTabDlg").hide()}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:button>
+				</xe:dialogButtonBar>
+			</xp:panel>
+		</xe:dialogContent>
+	</xe:dialog>
+</xp:view>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+<xp:panel tagName="div" id="pane" style="padding:30px" styleClass="">
+	
+ 
+	There was an error<br></br>
+	
+	<xp:link escape="true" text="Go back to application" id="link1"><xp:eventHandler event="onclick" submit="true" refreshMode="complete">
+	<xp:this.action>
+		<xp:openPage name="/start.xsp"></xp:openPage>
+	</xp:this.action></xp:eventHandler></xp:link>
+	</xp:panel> 
+</xp:view>

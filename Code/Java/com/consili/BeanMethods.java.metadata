@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.1" replicaid="C1258962006EF9E0" version="12.0">
+<noteinfo noteid="b2a" sequence="158" unid="F339A77975169C54C1258968006C680C">
+<created><datetime>20230304T204405,24+01</datetime></created>
+<modified><datetime dst="true">20230513T110651,71+02</datetime></modified>
+<revised><datetime dst="true">20230513T110651,70+02</datetime></revised>
+<lastaccessed><datetime dst="true">20230513T110651,70+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230509T152509,37+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<item name="$Flags"><text>34567Cg~[</text></item>
+<item name="$TITLE"><text>com/consili/BeanMethods.java</text></item>
+
+
+
+
+
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>com/consili/BeanMethods.java</text></item>
+
+</note>

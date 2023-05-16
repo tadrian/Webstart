@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:panel tagName="div" id="pane" style="margin:10px" styleClass="">
+		<xp:comboBox id="comboBox3" value="" style="" styleClass="">
+			<xp:selectItems>
+				<xp:this.value><![CDATA[#{javascript:return BeanMethods.getUserBoxes()}]]></xp:this.value>
+			</xp:selectItems>
+			<xp:eventHandler event="onchange" submit="true" refreshMode="partial" refreshId="mobpane"></xp:eventHandler>
+		</xp:comboBox>
+		<xp:panel tagName="div" id="mobpane" style="width:100%;margin-top:10px" styleClass="">
+			<xp:this.data>
+				<xp:dominoDocument var="boxd" action="openDocument">
+					<xp:this.documentId><![CDATA[#{javascript:var boxid = getComponent("comboBox3").getValue()
+database.getView("LookupKey").getDocumentByKey("Box_UNID_" + boxid)}]]></xp:this.documentId>
+				</xp:dominoDocument>
+			</xp:this.data>
+			<xp:panel id="portletwrapper" styleClass="portletwrapper">
+				<div class="portlet" id="#{boxd.UniqueID}">
+					<xc:ccPopBoxHeader TabId="#{compositeData.TabId}"></xc:ccPopBoxHeader>
+					<xp:panel tagName="div">
+						<xp:this.styleClass><![CDATA[#{javascript:var color = boxd.getItemValueString("HeaderTheme")
+return color!="" ? "portlet-header " + color : "portlet-header BgDefault"
+
+}]]></xp:this.styleClass>
+						<xp:panel id="boxheader" disableOutputTag="true">
+							<xp:text escape="true" id="computedField1" tagName="div" style="display:inline-block" value="#{boxd.Title}" title="#{boxd.Title}">
+							</xp:text>
+							<span style="float:right;margin-right:10px">
+								<xp:link escape="true" text="" id="link6" style="color:#FFF;margin-top:2px">
+									<xp:this.rendered><![CDATA[#{javascript:try{
+BeanMethods.isOutOfOrder(boxd.getItemValueString("UniqueId"))
+}catch(e){
+	Logger.LogEvent("isOutOfOrder error " + e)
+}}]]></xp:this.rendered>
+									<i class="fa fa-refresh"></i>
+									<xp:eventHandler event="onclick" submit="true" refreshMode="complete" disableValidators="true">
+										<xp:this.action><![CDATA[#{javascript:try{
+	var id = boxd.getItemValueString("UniqueId")
+	MakeSureAllBookmarkInOrderField(id)
+	//var txt = "refreshPage(\"#{id:portletWrapper}\")"
+	//view.postScript(txt)
+
+}catch(e){
+	Logger.LogEvent("repeatBoomarks error " + e)
+}}]]></xp:this.action>
+									</xp:eventHandler>
+								</xp:link>
+								<xp:link escape="true" text="" id="link4">
+									<i class="fa fa-bars" style="color:#FFF;margin-top:2px"></i>
+									<xp:eventHandler event="onclick" submit="false">
+										<xp:this.script><![CDATA[XSP.openMenu(thisEvent,#{javascript:getComponent('popheader').getMenuCtor()})
+]]></xp:this.script>
+									</xp:eventHandler>
+								</xp:link>
+								<xp:panel tagName="i" styleClass="#{boxd.minimized == '1' ? 'fa fa-chevron-up toggle' : 'fa fa-chevron-down toggle'}">
+								</xp:panel>
+							</span>
+						</xp:panel>
+					</xp:panel>
+					<xp:panel styleClass="portlet-content" tagName="div" id="BookmarkPanel" style="#{boxd.Minimized == '1' ? 'display:none' : ''}">
+						<xc:ccAddTextQuick boxid="#{boxd.UniqueID}" rendered="#{boxd.QuickTextOpen == '1'}"></xc:ccAddTextQuick>
+						<xc:ccBoxContent></xc:ccBoxContent>
+					</xp:panel>
+				</div>
+			</xp:panel>
+		</xp:panel>
+	</xp:panel>
+</xp:view>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+
+<xp:this.resources>
+         <xp:headTag tagName="meta">
+             <xp:this.attributes>
+                 <xp:parameter name="http-equiv=" value="X-UA-Compatible" />
+                  <xp:parameter name="content" value="IE=edge,chrome=1" />
+                
+             </xp:this.attributes>
+         </xp:headTag>
+    </xp:this.resources>
+
+</xp:view>

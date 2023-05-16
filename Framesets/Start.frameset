@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.1'
+ replicaid='C1258962006EF9E0'>
+<noteinfo noteid='3c82' unid='AE7A311779406224C1258974003F2332' sequence='7'>
+<created><datetime>20230316T122937,78+01</datetime></created>
+<modified><datetime dst='true'>20230509T152531,77+02</datetime></modified>
+<revised><datetime dst='true'>20230403T205013,79+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20230509T152531,76+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230509T152531,76+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<item name='$TITLE' sign='true'><text>Start</text></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$DesignerVersion'><text>8.5.3</text></item>
+<item name='$WindowTitle' sign='true'><formula>@DbTitle</formula></item>
+<item name='$FrameSet' sign='true'>
+<rawitemdata type='1'>
+7/8YAAIABQAAAAAAAAAAAAAAAAAAAAAA8P8+AEQAAAABAAAAAAABAAEAAAAAAAUAAAAAAAUAAAAA
+AAIAAQAAAAAAAQAAAAAAAAABACgAAwBaAAMAAQDx/zQAEAAAAABAAQECAAEAAQAAAAAAAAAAAAAA
+AQAAAAAAAAABAP///wABAAAKAQAAAAAA9v8mAAAAAAADAAcABAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AExvZ2/w/z4AAAAAAAEAAAAAAAEAAQAAAAAABQAAAAAABQAAAAAAAQACAAAAAAAFAAAAAAAAAAMA
+AQABALsAAwBOAPH/RABQAAAAAGABAAMAAQABAAAAAAAEAAAABAABAAAAAAAAAExlZnRNYWluAAAD
+AAIAAAABAP///wABAAAKAQAAAAAA9v8qAAAAAAADAAcACAAAAAAAAAAAAAAAAAAAAAAAAAAAAExl
+ZnRQYW5l8f84ABEAAAAAQAAAAwABAAEAAAAAAAQAAAAAAAEAAAAAAAAATWFpbgEA////AAEAAAoB
+AAAAAAD2/ysAAAAAAAMABwAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAU3RhcnRwYWdlPw==
+</rawitemdata></item>
+<item name='$Flags'><text>#34CQw</text></item></note>
+

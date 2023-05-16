@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:div id="keepSessionAlive"></xp:div>
+	<xp:scriptBlock id="scriptBlock1">
+		<xp:this.value>
+			<![CDATA[XSP.addOnLoad(function() {
+    var intervalId = setInterval(function() {
+        XSP.partialRefreshPost("#{id:keepSessionAlive}", {
+            onError: function() {
+                x$("#{id:timeoutbox}").show(); 
+                clearInterval(intervalId); // stop the interval
+            }
+        });   
+    }, 600000);  
+});
+]]>                      
+		</xp:this.value>
+	</xp:scriptBlock>
+ 
+	<xp:panel tagName="div" id="timeoutbox" style="" styleClass="row timeoutbox">
+		<div class="timeoutbox-header">Session Expired</div>
+		<div class="timeoutbox-text">Your session expired - Click reload to continue</div>
+		<div class="timeoutbox-link">
+			<xp:link escape="true" text="Reload" id="link1" styleClass="btn">
+				<xp:eventHandler event="onclick" submit="false">
+
+					<xp:this.script><![CDATA[window.location.reload()]]></xp:this.script>
+				</xp:eventHandler>
+			</xp:link>
+		</div>
+	</xp:panel>
+</xp:view>

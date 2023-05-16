@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<xp:panel tagName="div" id="datapanel" style="" styleClass="">
+		<xp:this.data>
+			<xp:dominoDocument var="boxd" action="editDocument" documentId="#{param.unid}" formName="Box" computeWithForm="onsave" scope="request">
+			</xp:dominoDocument>
+		</xp:this.data>
+		<xe:dialog id="renamebox" title="Rename Box '#{boxd.title}'">
+			<xe:dialogContent id="renamecontent">
+				<xp:panel id="panel2" styleClass="renamebox">
+					<xp:inputText id="inputText7" value="#{boxd.Title}"></xp:inputText>
+				</xp:panel>
+				<xe:dialogButtonBar id="dialogButtonBar3">
+				<xp:button value="Close" id="button1">
+						<xp:eventHandler event="onclick" submit="false">
+							<xp:this.script><![CDATA[XSP.closeDialog('#{id:renamebox}')
+]]></xp:this.script>
+						</xp:eventHandler></xp:button>
+					<xp:button value="Rename" id="button2">
+						<xp:eventHandler event="onclick" submit="true" refreshMode="partial" disableValidators="true" refreshId="bref">
+							<xp:this.action><![CDATA[#{javascript:boxd.save()
+var c = getComponent("renamebox")
+c.hide()
+
+}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:button>
+				</xe:dialogButtonBar>
+			</xe:dialogContent>
+			<xe:dropDownButton id="dropDownButton1"></xe:dropDownButton>
+		</xe:dialog>
+	</xp:panel>
+</xp:view>

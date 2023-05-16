@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+
+	<xp:text escape="false" id="computedField4" value="#{viewScope.msg}"></xp:text>
+	<xp:this.data>
+		<xp:dominoDocument var="d" formName="Upload" computeWithForm="onsave"></xp:dominoDocument>
+	</xp:this.data>
+	<xp:fileUpload id="fileUpload1" value="#{d.Body}"></xp:fileUpload>
+
+	<xp:button value="Save" id="button3">
+		<xp:eventHandler event="onclick" submit="true" refreshMode="complete">
+			<xp:this.action><![CDATA[#{javascript:d.save()
+
+var x = HtmlParser.ExportBookmarks()
+getComponent("computedField1").setValue(x)
+}]]></xp:this.action>
+		</xp:eventHandler></xp:button>
+		<xp:text escape="false" id="computedField1"></xp:text> 
+	
+	 
+</xp:view>

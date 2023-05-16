@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+
+
+	<xp:panel tagName="div" style="display:none" id="settings" styleClass="">
+			
+		<xp:this.data>
+			<xp:dominoDocument var="ud" formName="User" action="editDocument" documentId="#{javascript:getCurrentUserDoc().getUniversalID()}"></xp:dominoDocument>
+		</xp:this.data>
+		<xp:radioGroup id="radioGroup1" layout="lineDirection" value="#{ud.Columns}">
+			<xp:selectItem itemLabel="3 Columns" itemValue="3"></xp:selectItem>
+			<xp:selectItem itemLabel="5 Columns" itemValue="5"></xp:selectItem>
+		</xp:radioGroup>
+		<xp:link escape="true" text="Save" id="link1"><xp:eventHandler event="onclick" submit="true" refreshMode="complete">
+	<xp:this.action>
+		<xp:saveDocument var="ud"></xp:saveDocument>
+	</xp:this.action></xp:eventHandler></xp:link>
+
+	</xp:panel>
+
+
+</xp:view>

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" pageTitle="XPages API Inspector">
+	<!--
+		<< Copyright 2011 Tommy Valand Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+		file except in compliance with the License. You may obtain a copy of the License at
+		http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software
+		distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+		express or implied. See the License for the specific language governing permissions and limitations under the License
+		>>
+	-->
+	<xp:this.beforeRenderResponse><![CDATA[#{javascript:APIInspector.beforeRenderResponse();}]]></xp:this.beforeRenderResponse>
+	<xp:this.resources>
+		<xp:script src="/APIInspectorSSJS.jss" clientSide="false"></xp:script>
+		<xp:styleSheet href="/APIInspector.css"></xp:styleSheet>
+		<xp:dojoModule name="dijit.form.Textarea"></xp:dojoModule>
+	</xp:this.resources>
+	<xp:div id="xpageApiInspector" styleClass="api-inspector">
+		<table>
+			<tr>
+				<td>
+					<div>
+						<strong>Inspect XPage</strong>
+					</div>
+					<xp:comboBox id="externalPage" value="">
+						<xp:selectItem itemValue="" itemLabel="Only API Inspector" />
+						<xp:selectItems>
+							<xp:this.value><![CDATA[#{javascript:return APIInspector.getXPageNames();}]]></xp:this.value>
+						</xp:selectItems>
+						<xp:eventHandler event="onchange" submit="true" refreshMode="partial" refreshId="xpageApiInspector"
+							disableValidators="true" execMode="partial">
+							<xp:this.script><![CDATA[var xpageName = thisEvent.target.value;
+var inspectorPageName = '#{javascript:view.getPageName();}'.substring(1);
+var currentPath = document.location.pathname;
+if( currentPath.indexOf( inspectorPageName ) === -1 ){
+	document.location.href = currentPath + inspectorPageName + '?external_page=' + xpageName;
+} else {
+	document.location.search = '?external_page=' + xpageName;
+}
+]]></xp:this.script>
+						</xp:eventHandler>
+					</xp:comboBox>
+				</td>
+				<td>
+					<div>
+						<strong>Component IDs</strong>
+					</div>
+					<xp:comboBox id="componentId" value="#{viewScope.componentId}">
+						<xp:selectItem itemValue="" itemLabel="" />
+						<xp:selectItems>
+							<xp:this.value><![CDATA[#{javascript:return APIInspector.getComponentIds();}]]></xp:this.value>
+						</xp:selectItems>
+						<xp:eventHandler event="onchange" submit="true" refreshMode="partial" refreshId="xpageApiInspector"
+							disableValidators="true" execMode="partial">
+							<xp:this.action><![CDATA[#{javascript:var componentId = this.getParent().value;
+if( componentId ){
+	viewScope.put( 'expression', 'getComponent( \'' + componentId + '\' )' );
+} else {
+	viewScope.remove( 'expression' );
+}}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:comboBox>
+					<xp:checkBox value="#{viewScope.showHiddenComponents}" id="chkShowHiddenComponents" text="Show hidden components"
+						checkedValue="show" uncheckedValue="hide">
+						<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="componentId"
+							disableValidators="true" execMode="partial">
+						</xp:eventHandler>
+					</xp:checkBox>
+				</td>
+				<td>
+					<div>
+						<strong>Previous expressions</strong>
+					</div>
+					<xp:comboBox id="previousExpressions" value="#{viewScope.previousExpressions}">
+						<xp:selectItem itemValue="" itemLabel="" />
+						<xp:selectItems value="#{sessionScope.previousExpressions}" />
+						<xp:eventHandler event="onchange" submit="true" refreshMode="partial" refreshId="xpageApiInspector"
+							disableValidators="true" execMode="partial">
+							<xp:this.action><![CDATA[#{javascript:APIInspector.storePreviousExpression();
+viewScope.put( 'expression', viewScope.previousExpressions );
+viewScope.put( 'componentId', '' );}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:comboBox>
+				</td>
+			</tr>
+		</table>
+		<div>
+			<xp:text disableTheme="true" escape="false">
+				<xp:this.value><![CDATA[<strong>Press <em>Shift + Enter</em> to execute/inspect expression</strong>]]></xp:this.value>
+			</xp:text>
+			<xp:inputTextarea id="expression" value="#{viewScope.expression}" style="width:100%" rows="1">
+				<xp:eventHandler event="onkeypress" submit="true" refreshMode="partial" refreshId="xpageApiInspector" disableValidators="true">
+					<xp:this.script><![CDATA[// Do a partial refresh on Shift+Enter
+setTimeout( function(){ var el = thisEvent.target; el.style.height = el.scrollHeight + 'px'; }, 10 );
+if( thisEvent.shiftKey && thisEvent.keyCode === 13 ){
+	dojo.stopEvent( thisEvent );
+} else {		
+	return false;
+}
+]]></xp:this.script>
+				</xp:eventHandler>
+				<xp:eventHandler event="onfocus" submit="false">
+					<xp:this.script><![CDATA[setTimeout( function(){ var el = thisEvent.target; el.style.height = el.scrollHeight + 'px'; }, 10 );]]></xp:this.script>
+				</xp:eventHandler>
+			</xp:inputTextarea>
+		</div>
+		<div>
+			<xp:text style="color:red" value="Invalid expression">
+				<xp:this.rendered><![CDATA[#{javascript:return ( viewScope.expressionInfo === '' && !facesContext.getMessages( 'inspectorMessages' ).hasNext() );}]]></xp:this.rendered>
+			</xp:text>
+		</div>
+		<div>
+			<xp:text style="color:red" value="#{javascript:'Exception:' + viewScope.exception}" rendered="#{javascript:viewScope.exception}" />
+		</div>
+		<xp:panel rendered="#{javascript:viewScope.expressionInfo}">
+			<!-- Class name -->
+			<xp:text id="className" disableTheme="true" escape="false">
+				<xp:this.value><![CDATA[#{javascript:return APIInspector.makeMainClassLinks();}]]></xp:this.value>
+			</xp:text>
+			<xp:br />
+			<!-- Object value (toString) -->
+			<xp:text id="expressionValue" disableTheme="true" escape="false">
+				<xp:this.value><![CDATA[#{javascript:var expressionInfo = viewScope.expressionInfo;
+if( !expressionInfo || !expressionInfo.value ){ return; }
+'<h3>toString: ' + expressionInfo.value + '</h3>';}]]></xp:this.value>
+			</xp:text>
+
+			<!-- Methods -->
+			<xp:br />
+			<xp:section id="methods" header="#{javascript: 'Methods (' + expressionInfo.methods.length + ')'}"
+				initClosed="true">
+				<xp:this.rendered><![CDATA[#{javascript:var expressionInfo = viewScope.expressionInfo;
+return ( expressionInfo && expressionInfo.methods && expressionInfo.methods.length > 0 );}]]></xp:this.rendered>
+				<ul>
+					<xp:repeat id="methodsRepeat" rows="100" value="#{viewScope.expressionInfo.methods}" var="method">
+						<li>
+							<dl>
+								<dt>
+									<xp:text disableTheme="true" value="#{javascript:method.command + method.commandThrows}" />
+								</dt>
+								<dd>
+									<xp:text escape="false" disableTheme="true">
+										<xp:this.value><![CDATA[#{javascript:return APIInspector.makeReturnTypeLinks( method.returnClass );}]]></xp:this.value>
+									</xp:text>
+								</dd>
+								<dd>
+									<xp:text escape="false" disableTheme="true">
+										<xp:this.value><![CDATA[#{javascript:return APIInspector.makeInheritedLinks( method.commandClass );}]]></xp:this.value>
+									</xp:text>
+								</dd>
+							</dl>
+						</li>
+					</xp:repeat>
+				</ul>
+			</xp:section>
+			<!-- Declared Methods -->
+			<xp:br />
+			<xp:section id="declaredMethods" initClosed="true"
+				header="#{javascript: 'Declared Methods (' + expressionInfo.declaredMethods.length + ')'}">
+				<xp:this.rendered><![CDATA[#{javascript:var expressionInfo = viewScope.expressionInfo;
+return ( expressionInfo && expressionInfo.declaredMethods && expressionInfo.declaredMethods.length > 0 );}]]></xp:this.rendered>
+				<ul>
+					<xp:repeat id="declaredMethodsRepeat" rows="100" value="#{viewScope.expressionInfo.declaredMethods}" var="declaredMethod">
+						<li>
+							<dl>
+								<dt>
+									<xp:text disableTheme="true" value="#{declaredMethod.command}" />
+								</dt>
+								<dd>
+									<xp:text escape="false" disableTheme="true"
+										value="#{javascript:return APIInspector.makeReturnTypeLinks( declaredMethod.returnClass );}">
+									</xp:text>
+								</dd>
+								<dd>
+									<xp:text escape="false" disableTheme="true"
+										value="#{javascript:return APIInspector.makeInheritedLinks( declaredMethod.commandClass );}">
+									</xp:text>
+								</dd>
+							</dl>
+						</li>
+					</xp:repeat>
+				</ul>
+			</xp:section>
+			<!-- Fields -->
+			<xp:br />
+			<xp:section id="fields" header="#{javascript: 'Fields (' + expressionInfo.fields.length + ')'}"
+				initClosed="true">
+				<xp:this.rendered><![CDATA[#{javascript:var expressionInfo = viewScope.expressionInfo;
+return ( expressionInfo && expressionInfo.fields && expressionInfo.fields.length > 0 );}]]></xp:this.rendered>
+				<ul>
+					<xp:repeat id="fieldsRepeat" rows="100" value="#{viewScope.expressionInfo.fields}" var="field">
+						<li>
+							<dl>
+								<dt>
+									<xp:text disableTheme="true" value="#{field.command}" />
+								</dt>
+								<dd>
+									<xp:text escape="false" disableTheme="true"
+										value="#{javascript:return APIInspector.makeReturnTypeLinks( field.returnClass );" />
+								</dd>
+								<dd>
+									<xp:text escape="false" disableTheme="true"
+										value="#{javascript:return APIInspector.makeInheritedLinks( field.commandClass );}" />
+								</dd>
+							</dl>
+						</li>
+					</xp:repeat>
+				</ul>
+			</xp:section>
+			<!-- Declared Fields -->
+			<xp:br />
+			<xp:section id="declaredFields" header="#{javascript: 'Declared Fields (' + expressionInfo.declaredFields.length + ')'}"
+				initClosed="true">
+				<xp:this.rendered><![CDATA[#{javascript:var expressionInfo = viewScope.expressionInfo;
+return ( expressionInfo && expressionInfo.declaredFields && expressionInfo.declaredFields.length > 0 );}]]></xp:this.rendered>
+				<ul>
+					<xp:repeat id="declaredFieldsRepeat" rows="100" value="#{viewScope.expressionInfo.declaredFields}" var="declaredField">
+						<li>
+							<dl>
+								<dt>
+									<xp:text disableTheme="true" value="#{declaredField.command}" />
+								</dt>
+								<dd>
+									<xp:text escape="false" disableTheme="true"
+										value="#{javascript:return APIInspector.makeReturnTypeLinks( declaredField.returnClass );" />
+								</dd>
+								<dd>
+									<xp:text escape="false" disableTheme="true"
+										value="#{javascript:return APIInspector.makeInheritedLinks( declaredField.commandClass );}" />
+								</dd>
+							</dl>
+						</li>
+					</xp:repeat>
+				</ul>
+			</xp:section>
+		</xp:panel>
+		<pre>
+			<xp:messages id="inspectorMessages" title="Press left mouse button to show entire message" /></pre>
+	</xp:div>
+	<xp:include id="includeExternalPage" pageName="${param.external_page}" loaded="${!empty(param.external_page)}" />
+</xp:view>

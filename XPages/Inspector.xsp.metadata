@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.1" replicaid="C1258962006EF9E0" version="12.0">
+<noteinfo noteid="3c76" sequence="12" unid="518F63D20AFAE496C12589850064C0B2">
+<created><datetime dst="true">20230402T202029,30+02</datetime></created>
+<modified><datetime dst="true">20230509T152531,31+02</datetime></modified>
+<revised><datetime dst="true">20230403T204819,53+02</datetime></revised>
+<lastaccessed><datetime dst="true">20230509T152531,30+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230509T152531,30+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<item name="$TITLE"><text>Inspector.xsp</text></item>
+<item name="$Flags"><text>gC~4K</text></item>
+
+
+<item name="$FileNames" sign="true"><text>Inspector.xsp</text></item>
+<item name="$DesignerVersion"><text>8.5.2</text></item>
+
+
+
+
+
+</note>

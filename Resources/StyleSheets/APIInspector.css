@@ -1,0 +1,26 @@
+/**
+*	Style sheet for API Inspector components
+*/
+
+.api-inspector {
+	background: #fff;
+	border-bottom: 1px solid #ccc;
+	padding: 5px;
+}
+
+.api-inspector table { border: none; border-collapse: collapse; }
+.api-inspector td { background: #fff; line-height: 1.5em; padding: 10px; }
+
+.api-inspector .more-info { background: no-repeat 12px 1px; padding-left: 25px; }
+
+.api-inspector .google { background-image: url( /icons/vwicn008.gif ); }
+
+.api-inspector .java,.api-inspector .jsf, .api-inspector .ibm { background-image: url( /icons/vwicn011.gif ); }
+
+.api-inspector ul { margin: 0; padding: 0; list-style: none; }
+
+.api-inspector dt { font-weight: bold; }
+.api-inspector dd {	margin-left: 10px; }
+
+.api-inspector .xspMessage { cursor: pointer; height: 1em; overflow: hidden; }
+.api-inspector .xspMessage:active { height: auto; }

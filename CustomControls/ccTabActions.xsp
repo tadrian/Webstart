@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<div class="row actions" style="">
+
+
+
+		<xp:panel tagName="div" id="AddNew" style="background-color:#F1F1F1;padding:5px" styleClass="col-md-6">
+
+			<xp:panel id="AddNewTab" styleClass="newtab col-md-4">
+				Add Tab
+				<xp:this.data>
+					<xp:dominoDocument var="newtabdoc" formName="Tab" computeWithForm="onsave"></xp:dominoDocument>
+				</xp:this.data>
+				<xp:inputText id="inputText5" value="#{newtabdoc.Title}" defaultValue="">
+					<xp:this.attrs>
+						<xp:attr name="placeholder" value="Enter Title and hit return"></xp:attr>
+					</xp:this.attrs>
+
+					<xp:eventHandler event="onkeydown" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true"
+						execMode="partial" execId="pageref">
+						<xp:this.script><![CDATA[if (event.keyCode === 13) {return true;} return false;]]></xp:this.script>
+						<xp:this.action><![CDATA[#{javascript:
+var userid = getUserId()
+newtabdoc.replaceItemValue("UserID",userid)
+newtabdoc.replaceItemValue("TabID",compositeData.TabId)
+newtabdoc.save()
+
+var paged = database.getView("LookupKey").getDocumentByKey("Page_UID_" + userid,true);
+
+// add the new tab to the taborder if this is set
+var v:java.util.Vector = paged.getItemValue("TabOrder")
+if(!v.isEmpty()){
+	v.add(newtabdoc.getItemValueString("UniqueID"))
+	paged.replaceItemValue("TabOrder",v)
+	paged.save()
+}
+//BeanMethods
+refreshDataPanel("AddNewTab")
+
+}]]></xp:this.action>
+					</xp:eventHandler>
+				</xp:inputText>
+
+
+			</xp:panel>
+			<xp:panel tagName="div" id="AddNewbox" style="" styleClass="col-md-4">
+				Add Box
+				<xp:this.data>
+					<xp:dominoDocument var="newboxdoc" formName="Box" computeWithForm="onsave"></xp:dominoDocument>
+				</xp:this.data>
+
+				<xp:inputText id="inputText1" value="#{newboxdoc.Title}" style="width:200px">
+					<xp:this.attrs>
+						<xp:attr name="placeholder" value="Enter title and hit return"></xp:attr>
+					</xp:this.attrs>
+
+					<xp:eventHandler event="onkeydown" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true">
+						<xp:this.script><![CDATA[if (event.keyCode === 13) {
+	if(x$("#{id:inputText1}").val() === ""){
+		return false;
+	}
+	return true;
+}
+return false;]]></xp:this.script>
+
+						<xp:this.action><![CDATA[#{javascript:var tabdoc = BeanMethods.getTabDoc(compositeData.TabId)
+newboxdoc.replaceItemValue("UserID",getCurrentUserDoc().getItemValueString("UniqueID"))
+newboxdoc.replaceItemValue("TabID",compositeData.TabId)
+newboxdoc.save()
+
+// add the new box to the boxorder if this is set
+
+var v:java.util.Vector = tabdoc.getItemValue("BoxOrder")
+var v1:java.util.Vector = tabdoc.getItemValue("BoxOrderCol1")
+var v2:java.util.Vector = tabdoc.getItemValue("BoxOrderCol2")
+var v3:java.util.Vector = tabdoc.getItemValue("BoxOrderCol3")
+/*
+var smallestVector;
+var boxx = "";
+if (v1.size() <= v2.size() && v1.size() <= v3.size()) {
+boxx = "BoxOrderCol1"
+  smallestVector = v1;
+} else if (v2.size() <= v1.size() && v2.size() <= v3.size()) {
+boxx = "BoxOrderCol2"
+  smallestVector = v2;
+} else {
+boxx = "BoxOrderCol3"
+  smallestVector = v3;
+}
+*/
+v1.add(newboxdoc.getItemValueString("UniqueID"))
+tabdoc.replaceItemValue("BoxOrderCol1",v1)
+tabdoc.computeWithForm(false,false)
+tabdoc.save()
+BeanMethods.setUserBoxes()
+refreshDataPanel("AddNewbox")
+
+}]]></xp:this.action>
+					</xp:eventHandler>
+				</xp:inputText>
+
+			</xp:panel>
+		</xp:panel>
+		<xp:panel tagName="div" id="edits" style="background-color:#F1F1F1;padding:5px" styleClass="col-md-6">
+
+			<xp:panel tagName="div" id="pane" style="" styleClass="col-md-4">
+				Tab Layout
+				<xp:comboBox id="comboBox1" style="width:150px" styleClass="">
+					<xp:this.defaultValue><![CDATA[#{javascript:var tbd = BeanMethods.getTabDoc(compositeData.TabId)
+return tbd.getItemValueInteger("Columns").toFixed()}]]></xp:this.defaultValue>
+					<xp:selectItem itemLabel="1 Column" itemValue="1"></xp:selectItem>
+					<xp:selectItem itemLabel="2 Columns" itemValue="2"></xp:selectItem>
+					<xp:selectItem itemLabel="3 Columns" itemValue="3"></xp:selectItem>
+					<xp:eventHandler event="onchange" submit="true" refreshMode="partial" disableValidators="true" refreshId="comboBox1">
+						<xp:this.action><![CDATA[#{javascript:var tid = compositeData.TabId
+
+var td = BeanMethods.getTabDoc(tid)
+var c = @TextToNumber(getComponent("comboBox1").getValue())
+td.replaceItemValue("Columns",c)
+
+var col1 = $V(td.getItemValue("BoxOrderCol1"))
+var col2 = $V(td.getItemValue("BoxOrderCol2"))
+var col3 = $V(td.getItemValue("BoxOrderCol3"))
+//var col4 = td.getItemValue("BoxOrderCol4")
+//var col5 = td.getItemValue("BoxOrderCol5")
+//var col6 = td.getItemValue("BoxOrderCol6")
+
+if(c==1){
+	col1.addAll(col2)
+	col1.addAll(col3)
+	td.replaceItemValue("BoxOrderCol1",$V(col1))
+	td.replaceItemValue("BoxOrderCol2","")
+	td.replaceItemValue("BoxOrderCol3","")
+	td.computeWithForm(false,false)
+	td.save()
+}
+if(c==2){
+	col2.addAll(col3)
+	td.replaceItemValue("BoxOrderCol2",$V(col2))
+	td.replaceItemValue("BoxOrderCol3","")
+	td.computeWithForm(false,false)
+	td.save()
+}
+
+
+
+td.save()
+
+// postscript seem to require partial update (not no update)
+var refid = getComponent("bref").getClientId(facesContext)
+var action = "refreshPage('" + refid + "')"
+view.postScript(action)
+}]]></xp:this.action>
+						<xp:this.script><![CDATA[if (confirm("Note: if you switch to a lower column value all boxes will be moved to column 1, do you want to continue?")) {
+	return true;
+}
+return false;]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:comboBox>
+			</xp:panel>
+			<xp:panel tagName="div" id="RenameTab" style="" styleClass="col-md-4">
+				Rename tab
+				<xp:inputText id="inputText7" style="width:200px">
+					<xp:this.defaultValue><![CDATA[#{javascript:var tbd = BeanMethods.getTabDoc(compositeData.TabId)
+								return tbd.getItemValueString("Title")}]]></xp:this.defaultValue>
+					<xp:eventHandler event="onkeydown" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true" execMode="partial" execId="pageref">
+						<xp:this.action><![CDATA[#{javascript:
+var tbd = BeanMethods.getTabDoc(compositeData.TabId)
+tbd.replaceItemValue("Title",getComponent("inputText7").getValue())
+tbd.computeWithForm(false,false)
+tbd.save()}]]></xp:this.action>
+						<xp:this.script><![CDATA[if (event.keyCode === 13) {return true;} return false;]]></xp:this.script>
+					</xp:eventHandler></xp:inputText>
+			</xp:panel>
+
+			<xp:panel id="panel1" styleClass="col-md-4" style="text-align:end">
+				<p></p>
+				<xp:link escape="true" text="More settings" id="link1" styleClass="">
+					<i class="fa fa-cog"></i>
+
+					<xp:eventHandler event="onclick" submit="false">
+						<xp:this.script><![CDATA[XSP.openMenu(thisEvent,#{javascript:getComponent('popAdmin').getMenuCtor()})]]></xp:this.script>
+					</xp:eventHandler></xp:link>
+				
+				
+				<xp:link escape="true" text="" id="doneediting" styleClass="">
+
+					<i class="fa fa-check"></i>
+					<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref">
+						<xp:this.action><![CDATA[#{javascript:sessionScope.remove("edit")
+sessionScope.remove("coledit")
+//facesContext.getExternalContext().redirect("./start.xsp#" + compositeData.TabId)}]]></xp:this.action>
+
+						<xp:this.script><![CDATA[$(".edit").hide()
+]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:link>
+			</xp:panel>
+
+		</xp:panel>
+	</div>
+
+	<xe:popupMenu id="popAdmin">
+		<xe:this.treeNodes>
+			<xe:basicLeafNode label="Change Column Titles" submitValue="coledit"></xe:basicLeafNode>
+			<xe:basicLeafNode label="Delete Tab" submitValue="deletetab"></xe:basicLeafNode>
+			<xe:basicLeafNode submitValue="disablefav">
+				<xe:this.label><![CDATA[#{javascript:BeanMethods.getUserDoc().getItemValueString("DisableFavIcons")=="1" ? "Enable Online Favicons" : "Disable Online Favicons"}]]></xe:this.label>
+			</xe:basicLeafNode>
+
+			<!-- 
+			<xe:basicLeafNode label="Clear all box colors" submitValue="clearboxcolor"></xe:basicLeafNode>
+			<xe:basicLeafNode label="Collapse all boxes" submitValue="collapseboxes"></xe:basicLeafNode>
+			<xe:basicLeafNode label="Expand all boxes" submitValue="expandboxes"></xe:basicLeafNode>
+			<xe:basicLeafNode label="Clear all box sorting" submitValue="clearboxsorting"></xe:basicLeafNode>
+			<xe:basicLeafNode label="Clear all tab sorting" submitValue="cleartabsorting"></xe:basicLeafNode>
+			<xe:basicLeafNode label="Clear all page sorting" submitValue="clearpagesorting"></xe:basicLeafNode>
+			<xe:basicLeafNode label="Import Bookmarks">
+				<xe:this.onClick><![CDATA[alert("This action is disabled")
+]]></xe:this.onClick>
+			</xe:basicLeafNode>
+			<xe:basicLeafNode label="Export Bookmarks">
+				<xe:this.onClick><![CDATA[alert("This action is disabled")
+
+]]></xe:this.onClick>
+			</xe:basicLeafNode>
+			<xe:basicLeafNode label="Create bookmarklet">
+				<xe:this.onClick><![CDATA[alert("This action is disabled")
+
+]]></xe:this.onClick>
+
+			</xe:basicLeafNode>
+			<xe:basicLeafNode label="Change to 5 column layout">
+				<xe:this.onClick><![CDATA[alert("This action is disabled")
+]]></xe:this.onClick>
+			</xe:basicLeafNode>
+		
+		 -->
+		 </xe:this.treeNodes>
+		<xp:eventHandler event="onItemClick" submit="true" refreshMode="partial" refreshId="bref">
+			<xe:this.action><![CDATA[#{javascript:var v = context.getSubmittedValue()
+switch(v){
+	case "deletetab":
+		removeTab(compositeData.TabId)
+		break;
+	case "coledit":
+		sessionScope.coledit = 1
+		break;
+	case "clearboxcolor":
+		Admin.ClearAllBoxColor();
+		break;
+	case "collapseboxes":
+		Admin.CollapseAllBoxes();
+		break;
+	case "expandboxes":
+		Admin.ExpandAllBoxes();
+		break;
+	case "cleartabsorting":
+		Admin.ClearAllTabSorting();
+		break;
+	case "clearboxsorting":
+		Admin.ClearAllBoxSorting();
+		break;
+	case "clearpagesorting":
+		Admin.ClearAllPageSorting();
+		break;
+	case "disablefav":
+		Admin.ToggleFavicon()
+		break;
+		
+		
+		
+}}]]></xe:this.action>
+		</xp:eventHandler>
+	</xe:popupMenu>
+</xp:view>

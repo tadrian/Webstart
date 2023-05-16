@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" readonly="true">
+	<xe:jsonRpcService id="jsonRpcService1" serviceName="actions" pathInfo="actions">
+		<xe:this.methods>
+			<xe:remoteMethod script="return action.saveTabSortOrder(pageid,order)" name="saveTabOrder">
+				<xe:this.arguments>
+					<xe:remoteMethodArg name="pageid"></xe:remoteMethodArg>
+					<xe:remoteMethodArg name="order"></xe:remoteMethodArg>
+				</xe:this.arguments>
+			</xe:remoteMethod>
+			<xe:remoteMethod script="return action.saveBoxSortOrder(tabid,col1Order,col2Order,col3Order,col4Order,col5Order)" name="saveBoxOrder">
+				<xe:this.arguments>
+					<xe:remoteMethodArg name="tabid"></xe:remoteMethodArg>
+					<xe:remoteMethodArg name="col1Order"></xe:remoteMethodArg>
+					<xe:remoteMethodArg name="col2Order"></xe:remoteMethodArg>
+					<xe:remoteMethodArg name="col3Order"></xe:remoteMethodArg>
+					<xe:remoteMethodArg name="col4Order"></xe:remoteMethodArg>
+					<xe:remoteMethodArg name="col5Order"></xe:remoteMethodArg>
+				</xe:this.arguments>
+			</xe:remoteMethod> 
+			<xe:remoteMethod script="return action.saveBookmarkSortOrder(boxid,order)" name="saveBookmarkOrder">
+				<xe:this.arguments>
+					<xe:remoteMethodArg name="boxid"></xe:remoteMethodArg>
+					<xe:remoteMethodArg name="order"></xe:remoteMethodArg>
+				</xe:this.arguments>
+			</xe:remoteMethod>
+			<xe:remoteMethod script="return action.saveBoxMinimized(boxid,minimized)" name="saveBoxMinimized">
+				<xe:this.arguments>
+					<xe:remoteMethodArg name="boxid"></xe:remoteMethodArg>
+					<xe:remoteMethodArg name="minimized"></xe:remoteMethodArg>
+				</xe:this.arguments>
+			</xe:remoteMethod>
+			<xe:remoteMethod script="return action.moveBookmarkToBox(bmid, fromboxid,toboxid)" name="moveBookmarkToBox">
+				<xe:this.arguments>
+					<xe:remoteMethodArg name="bmid"></xe:remoteMethodArg>
+					<xe:remoteMethodArg name="fromboxid"></xe:remoteMethodArg>
+					<xe:remoteMethodArg name="toboxid"></xe:remoteMethodArg>
+				</xe:this.arguments>
+			</xe:remoteMethod>
+			<xe:remoteMethod script="return action.createQuickText(boxid,text)" name="createQuickText">
+				<xe:this.arguments>
+					<xe:remoteMethodArg name="boxid"></xe:remoteMethodArg>
+					<xe:remoteMethodArg name="text"></xe:remoteMethodArg>
+				</xe:this.arguments>
+			</xe:remoteMethod>
+			<xe:remoteMethod script="return action.logError(text)" name="logError">
+				<xe:this.arguments>
+					<xe:remoteMethodArg name="text"></xe:remoteMethodArg>
+				</xe:this.arguments>
+			</xe:remoteMethod>
+		</xe:this.methods>
+	</xe:jsonRpcService>
+</xp:view>

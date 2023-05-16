@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:this.pageTitle><![CDATA[#{javascript:var title = BeanMethods.getPageDoc().getItemValueString("Title");
+title==""? "Web Start":title}]]></xp:this.pageTitle>
+	<div class="row header">
+		<div class="col-md-4">
+			<i class="fa fa-home"></i>
+			<xp:link escape="true" id="link6">
+				<xp:this.text><![CDATA[#{javascript:var title = BeanMethods.getPageDoc().getItemValueString("Title") 
+title==""? "WEB START":title}]]></xp:this.text>
+				<xp:eventHandler event="onclick" submit="false">
+					<xp:this.script><![CDATA[XSP.showContent("#{id:dynC}","bm")]]></xp:this.script>
+				</xp:eventHandler>
+				<xp:eventHandler event="onclick" submit="true" refreshMode="complete" loaded="false">
+					<xp:this.action><![CDATA[#{javascript:context.reloadPage()}]]></xp:this.action>
+				</xp:eventHandler>
+			</xp:link>
+		</div>
+		<div class="col-md-4">
+			<xc:ccSearchAll></xc:ccSearchAll>
+		</div>
+		<div class="col-md-4">
+			<span style="float:right">
+				<xp:panel>
+				<xp:link escape="true" text="" id="link3" value="/startm.xsp">
+					<i class="fa-solid fa-mobile-screen-button" title="Open mobile version"></i>
+				</xp:link>&#160;
+				<xc:ccBookmarklet></xc:ccBookmarklet>
+					
+					
+					<xp:link escape="true" text="" id="link1" style="color:#FFF">
+						<i class="fa-regular fa-pen-to-square" title="add/edit tabs and boxes"></i>
+						<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="link1">
+							<xp:this.script><![CDATA[$(".edit").toggle()
+]]></xp:this.script>
+							<xp:this.action><![CDATA[#{javascript:sessionScope.edit = 1}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:link>
+					
+					</xp:panel>
+					&#160;|&#160;
+				<xp:text escape="true" id="computedField2">
+					<xp:this.value><![CDATA[#{javascript:var fn = getCurrentUserDoc().getItemValueString("FirstName") 
+var us = getCurrentUserDoc().getItemValueString("UserName") 
+return fn!="" ? fn : us}]]></xp:this.value>
+				</xp:text>&#160;|&#160;
+				<xp:link escape="true" text="" id="link2" style="color:#FFF">
+						<i class="fa-solid fa-arrow-right-from-bracket" title="logout"></i>
+					
+						<xp:eventHandler event="onclick" submit="true" refreshMode="complete">
+							<xp:this.action><![CDATA[#{javascript:var ud = getCurrentUserDoc()
+var v = ud.getItemValue("SessionID")
+var c = getCookieValueX("session")
+if(v.contains(c)){
+	v.remove(c)
+	ud.replaceItemValue("SessionID",v)
+	ud.computeWithForm(false,false)
+	ud.save()
+	context.redirectToPage("login")
+}}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:link>
+				
+			</span>
+		</div>
+	</div>
+</xp:view>

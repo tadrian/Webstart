@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<xp:panel tagName="div" id="datapanel" style="" styleClass="">
+		<xp:this.data>
+			<xp:dominoDocument var="bmdocd" formName="Bookmark" computeWithForm="onsave" action="editDocument" documentId="#{param.unid}">
+			</xp:dominoDocument>
+		</xp:this.data>
+		<xe:dialog id="editBmkDlg" title="Edit bookmark">
+			<xe:dialogContent>
+				<xp:panel id="b" styleClass="">
+					<xp:panel>
+						<p>Select color</p>
+						<p>
+							<xp:inputText id="inputText4" value="#{bmdocd.ColorTheme}" style="display:none"></xp:inputText>
+							<xp:repeat id="repeat1" rows="30" var="coll">
+								<xp:this.value><![CDATA[#{javascript:[7,30,36,16,35,8]}]]></xp:this.value>
+								<xp:link escape="true" text="" id="link1" styleClass="color#{javascript:coll.toFixed(0)}">
+									<xp:this.style><![CDATA[#{javascript:var theme = bmdocd.getItemValueString("ColorTheme");
+var current = "color" + coll.toFixed()
+if(theme == current){
+	return "padding:10px;border:1px solid black"
+}else{
+	return "padding:10px"
+
+}
+}]]></xp:this.style>
+									<xp:eventHandler event="onclick" submit="false">
+										<xp:this.script><![CDATA[var box = "#{id:inputText4}"
+var link = "#{id:link1}"
+x$(box).val(x$(link).attr("class"))
+x$(link).parent().children().css("border","0px solid black")
+x$(link).css("border","1px solid black")]]></xp:this.script>
+									</xp:eventHandler>
+								</xp:link>
+							</xp:repeat>
+						</p>
+					</xp:panel>
+					<xp:panel rendered="#{bmdocd.type=='1'}">
+						<!-- <xp:this.rendered><![CDATA[#{javascript:bmdocd.getItemValueString("Type")=="1"}]]></xp:this.rendered> -->
+						<xp:inputText id="inputText3" value="#{bmdocd.Title}">
+							<xp:this.attrs>
+								<xp:attr name="placeholder" value="Enter title"></xp:attr>
+							</xp:this.attrs>
+							<xp:this.defaultValue><![CDATA[#{javascript:try{
+"Bookmark "  + bmdocd.getItemValueString("UniqueID")
+}catch(e){
+	Logger.LogEvent("default value bm title error " + e)
+}}]]></xp:this.defaultValue>
+						</xp:inputText>
+						<xp:inputText id="inputText2" value="#{bmdocd.Url}" defaultValue="http://www.idg.se">
+							<xp:this.attrs>
+								<xp:attr name="placeholder" value="Enter url"></xp:attr>
+							</xp:this.attrs>
+						</xp:inputText>
+					</xp:panel>
+					<xp:panel rendered="#{bmdocd.type=='2'}">
+						<!-- <xp:this.rendered><![CDATA[#{javascript:bmdocd.getItemValueString("Type")=="2"}]]></xp:this.rendered> -->
+						<xp:checkBox text="Use Code" id="checkBox3" value="#{bmdocd.Code}" checkedValue="1" uncheckedValue="0"></xp:checkBox>
+						<xp:comboBox id="comboBox1" value="#{bmdocd.CodeLang}">
+							<xp:selectItem itemLabel="- Select Code language -" itemValue=""></xp:selectItem>
+							<xp:selectItems>
+								<xp:this.value><![CDATA[#{javascript:return ["ps","sql","cs","json","xml","js","java","html","vb","vbs","css"]}]]></xp:this.value>
+							</xp:selectItems>
+						</xp:comboBox>
+						<xp:checkBox text="Use Markdown" id="checkBox1" value="#{bmdocd.MarkDown}" checkedValue="1" uncheckedValue="0"></xp:checkBox>
+						<xp:checkBox text="Use HTML" id="checkBox2" value="#{bmdocd.UseHTML}" checkedValue="1" uncheckedValue="0"></xp:checkBox>
+						<xp:inputText id="inputText1" value="#{bmdocd.Title}">
+							<xp:this.attrs>
+								<xp:attr name="placeholder" value="Enter title"></xp:attr>
+							</xp:this.attrs>
+						</xp:inputText>
+						<xp:inputTextarea style="min-height:200px" id="inputTextarea2" value="#{bmdocd.Summary}">
+							<xp:this.attrs>
+								<xp:attr name="placeholder" value="add text or code here"></xp:attr>
+							</xp:this.attrs></xp:inputTextarea>
+					</xp:panel>
+					<xe:dialogButtonBar id="dialogButtonBar1">
+					<xp:button value="Close" id="button2">
+						<xp:eventHandler event="onclick" submit="false">
+							<xp:this.script><![CDATA[XSP.closeDialog('#{id:editBmkDlg}')
+]]></xp:this.script>
+						</xp:eventHandler></xp:button>
+						<xp:button value="Save" id="button1">
+							<xp:eventHandler event="onclick" submit="true" refreshMode="partial" disableValidators="true" refreshId="bref">
+								<xp:this.action><![CDATA[#{javascript://bmdocd.replaceItemValue("UserID",getUserId())
+//bmdocd.replaceItemValue("BoxID",boxd.getItemValue("UniqueID"))
+//bmdocd.replaceItemValue("TabID",boxd.getItemValue("TabID"));
+
+bmdocd.save()
+
+// trigger the datasource as request
+viewScope.update = 1
+
+//refreshDataPanel("bookmarks")
+getComponent("editBmkDlg").hide()
+
+
+
+}]]></xp:this.action>
+							</xp:eventHandler>
+						</xp:button>
+					</xe:dialogButtonBar>
+				</xp:panel>
+			</xe:dialogContent>
+		</xe:dialog>
+	</xp:panel>
+</xp:view>

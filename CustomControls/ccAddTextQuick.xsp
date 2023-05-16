@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:text escape="true" id="computedField4" tagName="div" style="display:none" styleClass="" value="#{javascript:compositeData.boxid}">
+	</xp:text>
+
+	<xp:inputText id="inputText1" value="" defaultValue="" style="margin: 0px 10px 0px 5px; width: calc(100% - 15px);">
+		<xp:this.attrs>
+			<xp:attr name="placeholder" value="enter quick text"></xp:attr>
+		</xp:this.attrs>
+		<xp:eventHandler event="onkeydown" submit="false">
+			<xp:this.script><![CDATA[txt = x$("#{id:inputText1}").val();
+boxid = x$("#{id:computedField4}").text();
+if(event.keyCode === 13) {
+		createQuickText(boxid, txt); // RPC call
+		refreshPage("#{id:repeatBookmarks}")
+		x$("#{id:inputText1}").val("").focus()
+		return true
+}
+return false;
+
+]]></xp:this.script>
+
+
+		</xp:eventHandler>
+	</xp:inputText>
+</xp:view>

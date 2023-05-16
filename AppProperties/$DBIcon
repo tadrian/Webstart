@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.1'
+ replicaid='C1258962006EF9E0'>
+<noteinfo noteid='3c22' unid='14257753AFB8A7ACC125898F003B15EF' sequence='6'>
+<created><datetime dst='true'>20230412T124522,39+02</datetime></created>
+<modified><datetime dst='true'>20230509T152530,60+02</datetime></modified>
+<revised><datetime dst='true'>20230412T124522,41+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20230509T152530,59+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230509T152530,59+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<item name='$TITLE'><text>$DBIcon</text></item>
+<item name='$Flags'><text>34Ci~Q</text></item>
+<item name='$ImagesWide' sign='true'><number>1</number></item>
+<item name='$ImagesHigh' sign='true'><number>1</number></item>
+<item name='$ImagesColorize' sign='true'><number>0</number></item>
+<item name='$FileSize' sign='true'><number>919</number></item>
+<item name='$ImageData' sign='true'>
+<rawitemdata type='1'>
+mQAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAH0AHAAAAAIAAAAAAJcDAAABAAAAAQAAAAAAAAB8
+AKEDAACXA5gDiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAAL
+EwEAmpwYAAADSUlEQVR4nL1XSWgUURDtuK8gCG4genBDiR4UERREBfUQokbqz4jBBSF6UZGk6/co
+MooIoiAeBOMpLjhT9UmieBDUaKKiiEfBBcS4Ii4ouBDjwYxU2yM9nWRm0j2x4B/mz//9qurV9i3r
+PwokzRBwzLSYk14JyCrmpGf0LyCYgaDNcoV0GDTfBuSfSnPm30KK9wvwutqmcQrpoEJ6lwMYWKJc
+SYFrak4PBm12K03f8gFnV0ynp5YMvCrROEshPSoG2HP/d6GoJOCgzRLQ/KlocHfRtVKBL1eaOvsG
+zhlA3h8ZPG6nFgT5Bs0/FNIN0Py4AAWLollum5kK6WPgo89i+9KT/51BruvF/e2WlSmLYvkkpell
+97Ti6uBZhfSkB+sT4S3fY4YD8oMe08pOr+h2XvPNAPdf1zrNY0PCZ8oA2eTh9ZT/dFVt4xQ3JnK9
+tKewlXVmAjhmfnbFE6nx7j7yoQKp1QWa68UTStMmhfQ88P/DpcnWQXnBlaZ5UiR8LnstCiibNgpA
+X9PNB/65YPOJC5CmV75LHZJqXrp1RADvVDYtywu+OdkwTCHdC3C6VZQSL4QGF28irSrIu0I6H7h4
+3G0uyLciWP5BYqioQUFpeuOL1BYJFoV0MgJ4e5XdON0qXjJl8brUXEDeJXkKaLaFBQfk+5JJVlip
+SF4eEabBeNSRFCsrqqicbCjK5V0yBUWq8SKrd14ZKpMKaLOlD+Ad4PAGqxQCjqkB5NZkMjlAaTpT
+BN+vJdLX7W2aGIn3rIBtKj0uj7pjNPLVPJbf+VsnzEKF9LaolMsncTu1ABJmNmhu8gBqhRIJrG6W
+a673FNycHbdDKwDSfJDPAvJvsdzLgjbPE0eEDklLtyIi/VJI2706cSJHqTAKrHWax8pwAcgvYna6
+IrvvWq7pgueJtuwIXV17bqRbJzS3BOj4lu2afRIlDwhN7ZA0o3L2NR1bj6k5MZ1eAw7vEIV8/+0M
+BOIL0KbcCiOg+a7Uff+evN3cjydocc93TLk/EOUlFApcBJDfgza2+8OyrEr70mil6alCarZ6lUyZ
+2zuQGvyeCSVKXigSgJoP/O2I9EEokcEz3z3JgEjAPgV+AfIXt6AgX1dIuGb3xTEl+XgR8geZAESp
+lYB3GgAAAABJRU5ErkJgggA=
+</rawitemdata></item>
+<item name='$MimeType' sign='true'><text>image/png</text></item>
+<item name='$FileModDT' sign='true'><datetime dst='true'>20230412T104432,00+02</datetime></item>
+<item name='$ImageNames' sign='true'><text>C:\Download\icons8-rocket-32.png</text></item>
+<item name='$DesignerVersion'><text>8.5.3</text></item></note>
+

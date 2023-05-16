@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+
+	
+	<div class="row">
+	<div class="col-md-6">
+	<xp:text escape="false" id="computedField4" tagName="div" style="color:red" styleClass="">
+		<xp:this.value><![CDATA[#{javascript:@Implode(BeanMethods.userTabs,"<br>")}]]></xp:this.value>
+	</xp:text>
+	
+	
+	</div>
+	<div class="col-md-6">
+	
+	<xp:text escape="false" id="computedField1" tagName="div" style="color:blue" styleClass="">
+		<xp:this.value><![CDATA[#{javascript:@Implode(BeanMethods.userBoxes,"<br>")}]]></xp:this.value>
+	</xp:text>
+	
+	
+	</div>
+	
+	</div>
+	
+	<xp:text escape="false" id="computedField5" tagName="div" style="color:blue" styleClass="">
+		<xp:this.value><![CDATA[#{javascript:var map = facesContext.getExternalContext().getRequestCookieMap()
+
+BeanMethods.getSessionID()}]]></xp:this.value>
+	</xp:text>
+	
+<xp:text escape="false" id="computedField3" tagName="div" style="color:blue" styleClass="">
+		<xp:this.value><![CDATA[#{javascript:var map = facesContext.getExternalContext().getRequestCookieMap()
+
+BeanMethods.getUserId()}]]></xp:this.value>
+	</xp:text>
+
+</xp:view>

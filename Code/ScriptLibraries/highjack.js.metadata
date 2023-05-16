@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="filter" maintenanceversion="2.1" replicaid="C1258962006EF9E0" version="12.0">
+<noteinfo noteid="3bfe" sequence="29" unid="F454F34F88D77DDFC125897500422A06">
+<created><datetime>20230317T130241,34+01</datetime></created>
+<modified><datetime dst="true">20230509T152530,50+02</datetime></modified>
+<revised><datetime dst="true">20230405T164037,78+02</datetime></revised>
+<lastaccessed><datetime dst="true">20230509T152530,49+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230509T152530,49+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<item name="$TITLE" sign="true"><text>highjack</text></item>
+<item name="$Flags"><text>h534Q</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+<item name="$POID"><datetime dst="true">20230405T164037,78+02</datetime></item></note>

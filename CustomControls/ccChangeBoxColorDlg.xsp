@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:this.data>
+		<xp:dominoDocument var="boxdoc" action="editDocument" documentId="#{param.unid}" formName="Box" computeWithForm="onsave"></xp:dominoDocument>
+	</xp:this.data>
+	
+	<xe:dialog id="changeBoxColorDlg" title="Change box color for '#{boxdoc.title}'">
+		<xp:panel>
+				
+				<p>Select color</p>
+				<p>
+				<xp:inputText id="inputText1" value="#{boxdoc.HeaderTheme}" style="display:none"></xp:inputText>
+				<xp:repeat id="repeat1" rows="30" var="coll">
+						<xp:this.value><![CDATA[#{javascript:[7,30,36,16,35,8]}]]></xp:this.value>
+						
+									
+						<xp:link escape="true" text="" id="link1" styleClass="color#{javascript:coll.toFixed(0)}">
+							<xp:this.style><![CDATA[#{javascript:var theme = boxdoc.getItemValueString("HeaderTheme");
+var current = "color" + coll.toFixed()
+if(theme == current){
+	return "padding:10px;border:1px solid black"
+}else{
+	return "padding:10px"
+
+}
+}]]></xp:this.style>
+							<xp:eventHandler event="onclick" submit="false">
+								<xp:this.script><![CDATA[var box = "#{id:inputText1}"
+var link = "#{id:link1}"
+x$(box).val(x$(link).attr("class"))
+x$(link).parent().children().css("border","0px solid black")
+x$(link).css("border","1px solid black")]]></xp:this.script>
+							</xp:eventHandler>
+						</xp:link>
+				</xp:repeat>
+				</p>
+				<xe:dialogButtonBar id="dialogButtonBar1">
+				<xp:button value="Close" id="button1">
+						<xp:eventHandler event="onclick" submit="false">
+							<xp:this.script><![CDATA[XSP.closeDialog('#{id:changeBoxColorDlg}')
+]]></xp:this.script>
+						</xp:eventHandler></xp:button>
+					<xp:button value="Save" id="button3">
+					<xp:eventHandler event="onclick" submit="true" refreshMode="partial" disableValidators="true" refreshId="bref">
+						<xp:this.action><![CDATA[#{javascript:boxdoc.save()
+//refreshDataPanel("bookmarks")
+var c = getComponent("changeBoxColorDlg")
+c.hide()
+}]]></xp:this.action>
+					</xp:eventHandler></xp:button>
+				</xe:dialogButtonBar>
+			</xp:panel>
+	</xe:dialog>
+</xp:view>

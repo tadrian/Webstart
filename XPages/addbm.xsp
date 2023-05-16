@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex">
+
+	<xp:this.resources>
+	
+		<xp:script src="/startSSJS.jss" clientSide="false"></xp:script>
+
+		<xp:script src="/jqueryui/jquery-ui.js" clientSide="true"></xp:script>
+		<xp:script src="/jqueryui/jquery-ui.touch-punch.js" clientSide="true"></xp:script>
+		
+		<xp:styleSheet href="/jqueryui/jquery-ui.css"></xp:styleSheet>
+		<xp:styleSheet href="/default.css"></xp:styleSheet>
+		<xp:styleSheet href="/themes.css"></xp:styleSheet>
+	</xp:this.resources>
+
+	<xp:this.data>
+		<xp:dominoDocument var="bookm" formName="Bookmark" computeWithForm="onsave"></xp:dominoDocument>
+	</xp:this.data>
+	<xp:this.beforePageLoad><![CDATA[#{javascript:try{
+	var ud = getCurrentUserDoc()
+	if(ud==null){
+		context.redirectToPage("login")
+	}
+}catch(e){
+	Logger.LogError(e.toString())
+}}]]></xp:this.beforePageLoad>
+
+	<style>
+
+	
+	</style>
+	<xp:panel tagName="div" id="ref" style="margin:20px">
+		<div class="grid-item span-columns">
+			<h2>Add Bookmark</h2>
+		</div>
+		<xp:table style="width:100.0%" id="tbl">
+
+			<xp:tr>
+				<xp:td style="width:150px">Title</xp:td>
+				<xp:td>
+					<xp:inputText id="inputText1" styleClass="" value="#{bookm.Title}" required="true" style="width:300px">
+						<xp:this.defaultValue><![CDATA[#{javascript:param.get("title")}]]></xp:this.defaultValue>
+						<xp:this.validators>
+							<xp:validateRequired message="Enter title"></xp:validateRequired>
+						</xp:this.validators>
+					</xp:inputText>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td>Url</xp:td>
+				<xp:td>
+					<xp:inputText id="inputText3" value="#{bookm.Url}" required="true">
+						<xp:this.defaultValue><![CDATA[#{javascript:context.getUrlParameter("url")}]]></xp:this.defaultValue>
+						<xp:this.validators>
+							<xp:validateRequired message="enter url	"></xp:validateRequired>
+						</xp:this.validators>
+					</xp:inputText>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td></xp:td>
+				<xp:td>
+					<xp:radioGroup id="radioGroup1" defaultValue="1" styleClass="radio">
+						<xp:selectItem itemLabel="Existing Box" itemValue="1"></xp:selectItem>
+						<xp:selectItem itemLabel="New Box" itemValue="2"></xp:selectItem>
+						<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="ref" disableValidators="true"></xp:eventHandler>
+					</xp:radioGroup>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+			<xp:this.rendered><![CDATA[#{javascript:getComponent("radioGroup1").getValue() != "1"}]]></xp:this.rendered>
+				<xp:td>Tab</xp:td>
+				
+				<xp:td>
+					<xp:comboBox id="comboBox1" value="#{bookm.BoxID}" style="width:200px;float:left">
+						<xp:selectItems>
+							<xp:this.value><![CDATA[#{javascript:return BeanMethods.getUserTabs()}]]></xp:this.value>
+						</xp:selectItems>
+						
+					</xp:comboBox>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:this.rendered><![CDATA[#{javascript:getComponent("radioGroup1").getValue() != "1"}]]></xp:this.rendered>
+				<xp:td>New Box Title</xp:td>
+				<xp:td>
+					<xp:inputText id="inputText2" style="width:200px;">
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="enter box title"></xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:this.rendered><![CDATA[#{javascript:getComponent("radioGroup1").getValue() == "1"}]]></xp:this.rendered>
+				<xp:td>Tab \ Box</xp:td>
+				<xp:td>
+					<xp:comboBox id="comboBox3" value="#{bookm.BoxID}" style="width:300px">
+
+						<xp:selectItems>
+							<xp:this.value><![CDATA[#{javascript:return BeanMethods.getUserBoxes()}]]></xp:this.value>
+						</xp:selectItems>
+					</xp:comboBox>
+				</xp:td>
+			</xp:tr>
+
+			<xp:tr>
+			
+				<xp:td></xp:td>
+				<xp:td>
+					<xp:button value="Save bookmark to box" id="button3">
+						<xp:eventHandler event="onclick" submit="true" refreshMode="complete" disableValidators="true">
+							<xp:this.action><![CDATA[#{javascript:try{
+	
+	var radio = getComponent("radioGroup1").getValue();
+	
+	if(radio == "1"){
+		
+		// Existing box
+		var boxid = getComponent("comboBox3").getValue();	
+		var tabid = getTabIdFromBoxId(boxid)
+		bookm.replaceItemValue("BoxID",boxid)
+		bookm.replaceItemValue("TabId",tabid)
+		bookm.replaceItemValue("UserID",getUserId())
+		bookm.replaceItemValue("Type","1")
+		bookm.save();
+		
+		var bxd = BeanMethods.getBoxDoc(boxid)
+		var bmid = bookm.getItemValueString("UniqueId")
+	
+		var v = bxd.getItemValue("BookmarkOrder")
+		if(!v.isEmpty()){
+			v.add(bmid)
+			bxd.replaceItemValue("BookmarkOrder",v)
+			bxd.computeWithForm(false,false)
+			bxd.save()
+		}
+		
+	}else{
+
+		var tabid = getComponent("comboBox1").getValue();
+		var tabdoc = BeanMethods.getTabDoc(tabid)
+		var boxTitle = getComponent("inputText2").getValue();
+
+		// create box
+		var boxd = database.createDocument()
+		boxd.replaceItemValue("Form","Box")
+		boxd.replaceItemValue("UserID",getUserId())
+		boxd.replaceItemValue("TabId",tabid)
+		boxd.replaceItemValue("Title",boxTitle)
+		boxd.computeWithForm(false,false)
+		boxd.save()
+		
+		// save box to tab
+		var boxid = boxd.getItemValueString("UniqueId")
+		var v = tabdoc.getItemValue("BoxOrderCol1");
+		v.add(boxid)
+		tabdoc.replaceItemValue("BoxOrderCol1",v)
+		tabdoc.computeWithForm(false,false)
+		tabdoc.save()
+		
+		// put bookmark in box
+		bookm.replaceItemValue("BoxID",boxid)
+		bookm.replaceItemValue("TabId",tabid)
+		bookm.replaceItemValue("UserID",getUserId())
+		bookm.replaceItemValue("Type","1")
+		bookm.save();
+		
+	}
+	view.postScript("javascript:window.close()")	
+
+
+}catch(e){
+	Logger.LogError(e.toString())
+	print("Save bookmarklet " + e)
+}}]]></xp:this.action>
+
+
+
+						</xp:eventHandler>
+					</xp:button>
+
+				</xp:td>
+			</xp:tr>
+
+		</xp:table>
+
+
+
+	</xp:panel>
+
+
+
+</xp:view>

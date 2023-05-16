@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" style="text-align:center">
+
+	<style>.btns{margin:10px}</style>
+
+	<div class="container" style="margin-top:100px"> 
+		<div class="row justify-content-center" style="margin:10px">
+			<div>
+				<h3>Start Login</h3>
+			</div>
+		</div>
+		
+
+		<div class="row justify-content-center" style="margin:10px">
+			<xp:inputText id="username" style="width:100px;display:inline-block;margin-left:5px" defaultValue="">
+				<xp:this.attrs>
+					<xp:attr name="placeholder" value="username"></xp:attr>
+				</xp:this.attrs>
+			</xp:inputText>
+			<xp:inputText id="password" style="width:100px;display:inline-block;margin-left:5px" defaultValue="" password="true">
+				<xp:this.attrs>
+					
+					<xp:attr name="placeholder" value="password"></xp:attr>
+				</xp:this.attrs>
+				<xp:eventHandler event="onkeydown" submit="true" refreshMode="complete" disableValidators="true">
+					<xp:this.script><![CDATA[if (event.keyCode === 13) {return true;} return false;]]></xp:this.script>
+					<xp:this.action><![CDATA[#{javascript:loginUser()}]]></xp:this.action>
+				</xp:eventHandler>
+			</xp:inputText>
+			<xp:button value="" id="login" style="margin-left:5px">
+				<i class="fa fa-arrow-right"></i>
+				<xp:eventHandler event="onclick" submit="true" refreshMode="complete" disableValidators="true">
+					<xp:this.action><![CDATA[#{javascript:loginUser()}]]></xp:this.action>
+				</xp:eventHandler>
+			</xp:button>
+		</div>
+
+		<xp:text escape="true" id="computedField4" value="#{viewScope.Msg}"
+			style="text-align:center;background-color:#5677a9;width:300px;color:#FFF;padding:5px">
+			<xp:this.rendered><![CDATA[#{javascript:viewScope.Msg != null}]]></xp:this.rendered>
+		</xp:text>
+	</div>
+
+	
+</xp:view>

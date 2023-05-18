@@ -61,14 +61,17 @@ title==""? "WEB START":title}]]></xp:this.pageTitle>
 	<xc:ccDebugToolbar defaultCollapsed="false" collapseTo="left" loaded="false"></xc:ccDebugToolbar>
 	<xc:ccDebug loaded="false"></xc:ccDebug>
 	<xp:panel tagName="div" style="" id="pane" styleClass="container">
-
+	<xc:ccViewInspector loaded="false"></xc:ccViewInspector>
 
 		<xc:ccHeader></xc:ccHeader>
+		
+		
 		<xp:panel tagName="div" id="bref" styleClass="row">
+		<xc:ccPageContent></xc:ccPageContent>
 			<xe:dynamicContent id="dynC">
 				<xp:this.facets>
 					<xp:span xp:key="bm">
-						<xc:ccPageContent></xc:ccPageContent>
+						
 					</xp:span>
 					<xp:span xp:key="search">
 						<xc:ccSearch></xc:ccSearch>
@@ -80,8 +83,9 @@ title==""? "WEB START":title}]]></xp:this.pageTitle>
 
 
 <!-- 
-	<xc:ccPopBookmark2></xc:ccPopBookmark2>
+	
  -->
+
 	<xc:ccMoveBoxToNewTabDlg></xc:ccMoveBoxToNewTabDlg>
 	<xc:ccChangeBoxColorDlg></xc:ccChangeBoxColorDlg>
 	<xc:ccMoveBmToNewBoxDlg></xc:ccMoveBmToNewBoxDlg>

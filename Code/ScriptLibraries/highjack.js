@@ -1,4 +1,4 @@
-var debugMode = false;
+var debugMode = true;
 
 XSP.addOnLoad(function() {
 	hijackAndPublishPartialRefresh();

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+
+	
+<div class="popup-menu">
+  <ul>
+    <li><a href="#">Option 1</a></li>
+    <li><a href="#">Option 2</a></li>
+    <li><a href="#">Option 3</a></li>
+  </ul>
+</div>
+    
+  
+</xp:view>

@@ -18,8 +18,11 @@ function activateAll(){
 XSP.addOnLoad(function() {
 });
 
+
+
+
 $(function() {
-	
+
 	var id = $("[id$='dynC']").attr("id")
 	x$(id).append("<div>hold on, getting your data...</div>")
 	XSP.showContent(id,"bm")

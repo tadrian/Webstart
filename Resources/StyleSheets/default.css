@@ -3,6 +3,18 @@
 body.xsp{
 }
 
+/*
+.popup-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+*/
+
 .header{
 	padding:20px 0px 20px 0px;
 	background-color:#5677a9;
@@ -223,7 +235,7 @@ body.xsp{
 	margin-right:20px !important
 }
 
-.fa{
+.fa,.fa-regular{
 	margin-right:5px
 }
 
@@ -476,3 +488,5 @@ pre[class*=language-].line-numbers{position:relative;padding-left:3.8em;counter-
   height: 100px;
   background-color:#FFF
 }
+
+

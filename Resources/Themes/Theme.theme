@@ -23,7 +23,7 @@
 	
 		<metaData>
 			<name>viewport</name>
-			<content>width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0</content>
+			<content>width=device-width,initial-scale=1, shrink-to-fit=no</content>
 		</metaData>
 		<metaData>
 			<name>apple-mobile-web-app-capable</name>

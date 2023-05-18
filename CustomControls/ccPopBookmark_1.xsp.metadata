@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.1" replicaid="C1258962006EF9E0" version="12.0">
+<noteinfo noteid="d86a" sequence="8" unid="C41A82DF7D7268E6C12589B3005EDD09">
+<created><datetime dst="true">20230518T191609,69+02</datetime></created>
+<modified><datetime dst="true">20230518T191612,75+02</datetime></modified>
+<revised><datetime dst="true">20230518T191612,74+02</datetime></revised>
+<lastaccessed><datetime dst="true">20230518T191612,74+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230518T191609,69+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<wassignedby><name>CN=Thomas Adrian/O=Consili</name></wassignedby>
+<item name="$TITLE"><text>ccPopBookmark_1.xsp</text></item>
+<item name="$Flags"><text>gC~4;</text></item>
+
+
+<item name="$FileNames" sign="true"><text>ccPopBookmark_1.xsp</text></item>
+
+
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+
+
+</note>

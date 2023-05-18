@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+
+	<span id="dropdown">
+		<xp:link escape="true" text="" id="link1" value="#" >
+			<i class="fa fa-bars"></i>
+			<xp:this.attrs>
+				<xp:attr name="data-toggle" value="dropdown"></xp:attr>
+			</xp:this.attrs>
+			</xp:link>
+		<xp:div styleClass="dropdown-menu dropdown-menu-left">
+			<xp:text value="#{bookd.title}" escape="true" id="computedField4" tagName="h6" style="" styleClass="dropdown-header"></xp:text>
+			<div class="dropdown-divider"></div>
+			<xp:link escape="true" rendered="#{bookd.type=='1' or bookd.type=='2'}" text="Edit" id="pop_bm_edit" styleClass="dropdown-item">
+				<i class="fa-regular fa-edit"></i>
+				<xp:eventHandler event="onclick" submit="false">
+					<xp:this.script><![CDATA[XSP.openDialog('#{id:editBmkDlg}',{},{unid: '#{javascript:bookd.getNoteID()}'})]]></xp:this.script>
+				</xp:eventHandler>
+			</xp:link>
+			<xp:link escape="true" rendered="#{bookd.type=='3'}" text="Rename title" id="pop_bm_rename" styleClass="dropdown-item">
+				<i class="fa-regular fa-edit"></i>
+				<xp:eventHandler event="onclick" submit="false">
+					<xp:this.script><![CDATA[XSP.openDialog('#{id:editFileTitle}',{},{unid: '#{javascript:bookd.getNoteID()}'})]]></xp:this.script>
+				</xp:eventHandler>
+			</xp:link>
+			<xp:link escape="true" text="Move to other box" id="pop_bm_move" styleClass="dropdown-item">
+				<i class="fa-regular fa-copy"></i>
+				<xp:eventHandler event="onclick" submit="false">
+					<xp:this.script><![CDATA[XSP.openDialog('#{id:moveBmToNewBoxDlg}',{},{unid: '#{javascript:bookd.getNoteID()}'})]]></xp:this.script>
+				</xp:eventHandler>
+			</xp:link>
+			<div class="dropdown-divider"></div>
+			<xp:link escape="true" text="#{bookd.TextStyle=='1' ? 'Remove done' : 'Set as done'}" id="pop_bm_done" styleClass="dropdown-item">
+				<i class="fa-regular fa-square-check"></i>
+			</xp:link>
+			<xp:link escape="true" text="Remove Color" id="pop_bm_delcolor" styleClass="dropdown-item">
+				<i class="fa-regular fa-square"></i>
+				<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true">
+					<xp:this.action><![CDATA[#{javascript:bookd.replaceItemValue("ColorTheme","")
+bookd.save()}]]></xp:this.action>
+				</xp:eventHandler>
+			</xp:link>
+			<div class="dropdown-divider"></div>
+			<xp:link escape="true" text="Delete item" id="pop_bm_del" styleClass="dropdown-item">
+				<i class="fa-regular fa-trash-can"></i>
+				<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true">
+					<xp:this.action><![CDATA[#{javascript:var bxd = getBoxDocFromBookmarkDoc(bookd);
+var bmid = bookd.getItemValueString("UniqueId")
+var v = bxd.getItemValue("BookmarkOrder")
+if(!v.isEmpty()){
+	if(v.contains(bmid)){
+		v.remove(bmid)
+		bxd.replaceItemValue("BookmarkOrder",v)
+		bxd.computeWithForm(false,false)
+		bxd.save()
+	}
+}
+bookd.getDocument().remove(true)}]]></xp:this.action>
+				</xp:eventHandler>
+			</xp:link>
+		</xp:div>
+	</span>
+</xp:view>

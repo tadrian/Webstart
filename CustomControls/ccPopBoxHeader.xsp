@@ -1,95 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
-	<!-- <xe:basicLeafNode submitValue="quicktext" label="#{boxd.quicktextopen == '1' ? 'Disable Quick Text' : 'Enable Quick Text'}"></xe:basicLeafNode> <xe:basicLeafNode 
-		label="Add Bookmark" onClick="XSP.openDialog('#{id:newBmkDlg}',{},{unid: '#{javascript:boxd.getNoteID()}'})"></xe:basicLeafNode> <xe:basicLeafNode label="Add 
-		Text" onClick="XSP.openDialog('#{id:newTextDlg}',{},{unid: '#{javascript:boxd.getNoteID()}'})"></xe:basicLeafNode> <xe:basicLeafNode label="Add File" onClick="XSP.openDialog('#{id:newFileDlg}',{},{unid: 
-		'#{javascript:boxd.getNoteID()}'})"></xe:basicLeafNode> <xe:basicLeafNode label="Move box to other tab" onClick="XSP.openDialog('#{id:moveBoxToNewTabDlg}',{},{unid: 
-		'#{javascript:boxd.getNoteID()}'})"></xe:basicLeafNode> <xe:basicLeafNode label="Change box color" onClick="XSP.openDialog('#{id:changeBoxColorDlg}',{},{unid: 
-		'#{javascript:boxd.getNoteID()}'})"></xe:basicLeafNode> <xe:basicLeafNode label="Rename box" onClick="XSP.openDialog('#{id:renamebox}',{},{unid: '#{javascript:boxd.getNoteID()}'})"></xe:basicLeafNode> 
-		<xe:basicLeafNode rendered="#{not empty boxd.headertheme}" label="Remove box color" submitValue="removecolor"></xe:basicLeafNode> <xe:basicLeafNode label="Delete 
-		all items from box" submitValue="removeallitems"></xe:basicLeafNode> <xe:basicLeafNode label="Delete All Done" submitValue="deletedone"></xe:basicLeafNode> 
-		<xe:basicLeafNode label="Delete box" submitValue="header_delete"></xe:basicLeafNode> -->
-		
-		
+	
 	<span class="dropdown">
+	<!-- 
 		<a class="" href="#" role="button" id="dropdownMenuLinkHeader" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="fa fa-bars"></i>
 		</a>
+		 -->
+		<xp:link escape="true" text="" id="link3" value="#">
+			<i class="fa fa-bars"></i>
+			<xp:this.attrs>
+				<xp:attr name="data-toggle" value="dropdown"></xp:attr>
+			</xp:this.attrs>
+			<xp:eventHandler event="onclick" submit="false">
+				<xp:this.script><![CDATA[XSP.showContent("#{id:dynH}","bmx")]]></xp:this.script>
+			</xp:eventHandler></xp:link>
+		
+		
 		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLinkHeader">
-			<xp:label value="#{box.title}" id="label1" styleClass="dropdown-item"></xp:label>
-			<xp:link escape="true" text="Add Bookmark" id="link1" styleClass="dropdown-item">
-				<i class="fa-regular fa-plus"></i>
-				<xp:eventHandler event="onclick" submit="false">
-					<xp:this.script><![CDATA[XSP.openDialog('#{id:newBmkDlg}',{},{unid: '#{javascript:boxd.getNoteID()}'})]]></xp:this.script>
-				</xp:eventHandler>
-			</xp:link>
-			<xp:link escape="true" text="Add Text" id="link17" styleClass="dropdown-item">
-				<i class="fa-regular fa-plus"></i>
-				<xp:eventHandler event="onclick" submit="false">
-					<xp:this.script><![CDATA[XSP.openDialog('#{id:newTextDlg}',{},{unid: '#{javascript:boxd.getNoteID()}'})]]></xp:this.script>
-				</xp:eventHandler>
-			</xp:link>
-			<xp:link escape="true" text="Add File" id="link18" styleClass="dropdown-item">
-				<i class="fa-regular fa-plus"></i>
-				<xp:eventHandler event="onclick" submit="false">
-					<xp:this.script><![CDATA[XSP.openDialog('#{id:newFileDlg}',{},{unid: '#{javascript:boxd.getNoteID()}'})]]></xp:this.script>
-				</xp:eventHandler>
-			</xp:link>
-			
-				<xp:link escape="true" text="Change box color" id="link20" styleClass="dropdown-item">
-				<i class="fa-regular fa-plus"></i>
-				<xp:eventHandler event="onclick" submit="false">
-					<xp:this.script><![CDATA[XSP.openDialog('#{id:changeBoxColorDlg}',{},{unid: '#{javascript:boxd.getNoteID()}'})]]></xp:this.script>
-				</xp:eventHandler>
-			</xp:link>
-			<xp:link escape="true" text="Move box to other tab" id="link19" styleClass="dropdown-item">
-				<i class="fa-regular fa-plus"></i>
-				<xp:eventHandler event="onclick" submit="false">
-					<xp:this.script><![CDATA[XSP.openDialog('#{id:moveBoxToNewTabDlg}',{},{unid: '#{javascript:boxd.getNoteID()}'})]]></xp:this.script>
-				</xp:eventHandler>
-			</xp:link>
-			
-			
-			
-			
-			<xp:link escape="true" text="#{boxd.quicktextopen == '1' ? 'Disable Quick Text' : 'Enable Quick Text'}" id="link2" styleClass="dropdown-item">
-				<i class="fa-regular fa-edit"></i>
-				<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref">
-					<xp:this.action><![CDATA[#{javascript:	var o = boxd.getItemValueString("QuickTextOpen") == "1" ? "0": "1"
+			<xp:text value="#{box.title}" escape="true" id="computedField4" tagName="h6" style="" styleClass="dropdown-header">
+			</xp:text>
+			<xe:dynamicContent id="dynH">
+				<xp:this.facets>
+					<xp:span xp:key="bmx">
+						<xp:link escape="true" text="#{boxd.quicktextopen == '1' ? 'Disable Quick Text' : 'Enable Quick Text'}" id="link2" styleClass="dropdown-item">
+							<i class="fa-regular fa-pen-to-square"></i>
+							<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref">
+								<xp:this.action><![CDATA[#{javascript:	var o = boxd.getItemValueString("QuickTextOpen") == "1" ? "0": "1"
 			boxd.replaceItemValue("QuickTextOpen",o)
 			boxd.save()}]]></xp:this.action>
-				</xp:eventHandler></xp:link>
-			<xp:link escape="true" text="Delete box" id="link25" styleClass="dropdown-item">
-				<i class="fa-regular fa-edit"></i>
-				<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true">
-					<xp:this.action><![CDATA[#{javascript:removeBox(boxd.getItemValueString("UniqueId"))
-BeanMethods.setUserBoxes()}]]></xp:this.action>
-				</xp:eventHandler></xp:link>
-			<xp:link escape="true" text="Delete All Done" id="link24" styleClass="dropdown-item">
-				<i class="fa-regular fa-edit"></i>
-				<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true">
-					<xp:this.action><![CDATA[#{javascript:removeDoneBookmarksFromBox(boxd.getItemValueString("UniqueId"))}]]></xp:this.action>
-				</xp:eventHandler></xp:link>
-			<xp:link escape="true" text="Delete all items from box" id="link23" styleClass="dropdown-item">
-				<i class="fa-regular fa-edit"></i>
-				<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true">
-					<xp:this.action><![CDATA[#{javascript:removeBookmarksFromBox(boxd.getItemValueString("UniqueId"))}]]></xp:this.action>
-				</xp:eventHandler></xp:link>
-			<xp:link escape="true" text="Remove box color" id="link22" styleClass="dropdown-item" rendered="#{not empty boxd.headertheme}">
-				<i class="fa-regular fa-edit"></i>
-				<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true">
-					<xp:this.action><![CDATA[#{javascript:boxd.replaceItemValue("HeaderTheme","")
+							</xp:eventHandler>
+						</xp:link>
+						<div class="dropdown-divider"></div>
+						<xp:link escape="true" text="Add Bookmark" id="link1" styleClass="dropdown-item">
+							<i class="fa-regular fa-bookmark"></i>
+							<xp:eventHandler event="onclick" submit="false">
+								<xp:this.script><![CDATA[XSP.openDialog('#{id:newBmkDlg}',{},{unid: '#{javascript:boxd.getNoteID()}'})]]></xp:this.script>
+							</xp:eventHandler>
+						</xp:link>
+						<xp:link escape="true" text="Add Text" id="link17" styleClass="dropdown-item">
+							<i class="fa-regular fa-file-lines"></i>
+							<xp:eventHandler event="onclick" submit="false">
+								<xp:this.script><![CDATA[XSP.openDialog('#{id:newTextDlg}',{},{unid: '#{javascript:boxd.getNoteID()}'})]]></xp:this.script>
+							</xp:eventHandler>
+						</xp:link>
+						<xp:link escape="true" text="Add File" id="link18" styleClass="dropdown-item">
+							<i class="fa fa-paperclip"></i>
+							<xp:eventHandler event="onclick" submit="false">
+								<xp:this.script><![CDATA[XSP.openDialog('#{id:newFileDlg}',{},{unid: '#{javascript:boxd.getNoteID()}'})]]></xp:this.script>
+							</xp:eventHandler>
+						</xp:link>
+						<div class="dropdown-divider"></div>
+						<xp:link escape="true" text="Change box color" id="link20" styleClass="dropdown-item">
+							<i class="fa-regular fa-square" style="color:green"></i>
+							<xp:eventHandler event="onclick" submit="false">
+								<xp:this.script><![CDATA[XSP.openDialog('#{id:changeBoxColorDlg}',{},{unid: '#{javascript:boxd.getNoteID()}'})]]></xp:this.script>
+							</xp:eventHandler>
+						</xp:link>
+						<xp:link escape="true" text="Remove box color" id="link22" styleClass="dropdown-item" rendered="#{not empty boxd.headertheme}">
+							<i class="fa-regular fa-square"></i>
+							<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true">
+								<xp:this.action><![CDATA[#{javascript:boxd.replaceItemValue("HeaderTheme","")
 boxd.save()}]]></xp:this.action>
-				</xp:eventHandler></xp:link>
-			<xp:link escape="true" text="Rename box" id="link21" styleClass="dropdown-item">
-				<i class="fa-regular fa-edit"></i>
-				<xp:eventHandler event="onclick" submit="false">
-					<xp:this.script><![CDATA[XSP.openDialog('#{id:renamebox}',{},{unid: '#{javascript:boxd.getNoteID()}'})]]></xp:this.script>
-				</xp:eventHandler>
-			</xp:link>
-		
-	
-	
+							</xp:eventHandler>
+						</xp:link>
+						<xp:link escape="true" text="Rename box" id="link21" styleClass="dropdown-item">
+							<i class="fa-regular fa-edit"></i>
+							<xp:eventHandler event="onclick" submit="false">
+								<xp:this.script><![CDATA[XSP.openDialog('#{id:renamebox}',{},{unid: '#{javascript:boxd.getNoteID()}'})]]></xp:this.script>
+							</xp:eventHandler>
+						</xp:link>
+						<xp:link escape="true" text="Move box to other tab" id="link19" styleClass="dropdown-item">
+							<i class="fa-regular fa-copy"></i>
+							<xp:eventHandler event="onclick" submit="false">
+								<xp:this.script><![CDATA[XSP.openDialog('#{id:moveBoxToNewTabDlg}',{},{unid: '#{javascript:boxd.getNoteID()}'})]]></xp:this.script>
+							</xp:eventHandler>
+						</xp:link>
+						<div class="dropdown-divider"></div>
+						<xp:link escape="true" text="Delete All Done" id="link24" styleClass="dropdown-item">
+							<i class="fa-regular fa-trash-can"></i>
+							<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true">
+								<xp:this.action><![CDATA[#{javascript:removeDoneBookmarksFromBox(boxd.getItemValueString("UniqueId"))}]]></xp:this.action>
+							</xp:eventHandler>
+						</xp:link>
+						<xp:link escape="true" text="Delete all items from box" id="link23" styleClass="dropdown-item">
+							<i class="fa-regular fa-trash-can"></i>
+							<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true">
+								<xp:this.action><![CDATA[#{javascript:removeBookmarksFromBox(boxd.getItemValueString("UniqueId"))}]]></xp:this.action>
+							</xp:eventHandler>
+						</xp:link>
+						<xp:link escape="true" text="Delete box" id="link25" styleClass="dropdown-item">
+							<i class="fa-regular fa-trash-can"></i>
+							<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="bref" disableValidators="true">
+								<xp:this.action><![CDATA[#{javascript:removeBox(boxd.getItemValueString("UniqueId"))
+BeanMethods.setUserBoxes()}]]></xp:this.action>
+							</xp:eventHandler>
+						</xp:link>
+					</xp:span>
+				</xp:this.facets>
+			</xe:dynamicContent>
 		</div>
 	</span>
 </xp:view>

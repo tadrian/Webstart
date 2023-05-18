@@ -83,7 +83,7 @@ title==""? "WEB START":title}]]></xp:this.pageTitle>
 
 
 <!-- 
-	
+	Note: below dialogs require refresh of "bref" to close
  -->
 
 	<xc:ccMoveBoxToNewTabDlg></xc:ccMoveBoxToNewTabDlg>

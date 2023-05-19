@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.1" replicaid="C1258962006EF9E0" version="12.0">
-<noteinfo noteid="ccb6" sequence="1" unid="D98C4718E65E7109C12589B100559F91">
+<noteinfo noteid="ccb6" sequence="4" unid="D98C4718E65E7109C12589B100559F91">
 <created><datetime dst="true">20230516T173514,09+02</datetime></created>
-<modified><datetime dst="true">20230516T173514,10+02</datetime></modified>
-<revised><datetime dst="true">20230516T173514,09+02</datetime></revised>
-<lastaccessed><datetime dst="true">20230516T173514,09+02</datetime></lastaccessed>
+<modified><datetime dst="true">20230519T140329,74+02</datetime></modified>
+<revised><datetime dst="true">20230519T140329,73+02</datetime></revised>
+<lastaccessed><datetime dst="true">20230519T140329,73+02</datetime></lastaccessed>
 <addedtofile><datetime dst="true">20230516T173514,09+02</datetime></addedtofile></noteinfo>
-<updatedby><name>CN=Mark E Wallace/OU=Ireland/O=IBM</name><name>CN=Mark Wallace/O=Mark Wallace</name><name>CN=MarksW520/O=DEV</name><name>CN=Tony McGuckin/OU=Ireland/O=IBM</name><name>CN=Thomas Adrian/O=Consili</name></updatedby>
-<wassignedby><name>CN=Tony McGuckin/OU=Ireland/O=IBM</name></wassignedby>
+<updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<wassignedby><name>CN=Thomas Adrian/O=Consili</name></wassignedby>
 <item name="$TITLE"><text>descend.gif</text></item>
 <item name="$Flags"><text>34CiQP</text></item>
 <item name="$FlagsExt" sign="true"><text>D</text></item>
 <item name="$ImagesWide" sign="true"><number>1</number></item>
 <item name="$ImagesHigh" sign="true"><number>1</number></item>
 <item name="$ImagesColorize" sign="true"><number>0</number></item>
-
-
-<item name="$MimeType" sign="true"><text>image/gif</text></item>
 <item name="$FileModDT" sign="true"><datetime dst="true">20100923T164641,78+01</datetime></item>
 <item name="$ImageNames" sign="true"><text>descend.gif</text></item>
-<item name="$DesignerVersion" sign="true"><text>8.5</text></item></note>
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+</note>

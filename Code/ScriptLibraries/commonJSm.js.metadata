@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="filter" maintenanceversion="2.1" replicaid="C1258962006EF9E0" version="12.0">
-<noteinfo noteid="9d2a" sequence="3" unid="E7F48B6B1CEB28DAC12589B000651602">
+<noteinfo noteid="9d2a" sequence="8" unid="E7F48B6B1CEB28DAC12589B000651602">
 <created><datetime dst="true">20230515T202407,70+02</datetime></created>
-<modified><datetime dst="true">20230515T202440,94+02</datetime></modified>
-<revised><datetime dst="true">20230515T202440,93+02</datetime></revised>
-<lastaccessed><datetime dst="true">20230515T202440,93+02</datetime></lastaccessed>
+<modified><datetime dst="true">20230519T141036,05+02</datetime></modified>
+<revised><datetime dst="true">20230516T135458,37+02</datetime></revised>
+<lastaccessed><datetime dst="true">20230519T141036,04+02</datetime></lastaccessed>
 <addedtofile><datetime dst="true">20230515T202407,70+02</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
-<item name="$POID"><datetime dst="true">20230412T115134,05+02</datetime></item>
+<wassignedby><name>CN=Thomas Adrian/O=Consili</name></wassignedby>
 <item name="$TITLE" sign="true"><text>commonJSm</text></item>
 <item name="$Flags"><text>h534Q</text></item>
 <item name="$PublicAccess" sign="true"><text>1</text></item>
 <item name="$DesignerVersion"><text>8.5.3</text></item>
-</note>
+
+<item name="$POID"><datetime dst="true">20230516T135458,37+02</datetime></item></note>

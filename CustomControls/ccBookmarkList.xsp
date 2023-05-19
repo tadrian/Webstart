@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:panel tagName="div" id="listref" style="min-width:1140px" styleClass="portlet-content">
+		<div class="row" style="margin-top:20px">
+			<div class="col-md-2">
+				<div>
+					<xp:link escape="true" text="All" id="link4">
+						<xp:this.style><![CDATA[#{javascript:viewScope.tp == null && viewScope.query == null ? "font-weight:bold":""}]]></xp:this.style>
+						<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="listref" disableValidators="true">
+							<xp:this.action><![CDATA[#{javascript:viewScope.remove("tp")
+viewScope.remove("query")}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:link>
+				</div>
+				<div>
+					<xp:link escape="true" text="Bookmarks" id="link1">
+						<xp:this.style><![CDATA[#{javascript:viewScope.tp == 1 && viewScope.query == null ? "font-weight:bold":""}]]></xp:this.style>
+						<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="listref" disableValidators="true">
+							<xp:this.action><![CDATA[#{javascript:viewScope.tp = 1
+viewScope.remove("query")}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:link>
+				</div>
+				<div>
+					<xp:link escape="true" text="Text" id="link2">
+						<xp:this.style><![CDATA[#{javascript:viewScope.tp ==2 && viewScope.query == null ? "font-weight:bold":""}]]></xp:this.style>
+						<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="listref" disableValidators="true">
+							<xp:this.action><![CDATA[#{javascript:viewScope.tp = 2
+viewScope.remove("query")}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:link>
+				</div>
+				<div>
+					<xp:link escape="true" text="Files" id="link3">
+						<xp:this.style><![CDATA[#{javascript:viewScope.tp ==3 && viewScope.query == null ? "font-weight:bold":""}]]></xp:this.style>
+						<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="listref" disableValidators="true">
+							<xp:this.action><![CDATA[#{javascript:viewScope.tp = 3
+viewScope.remove("query")}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:link>
+				</div>
+				<div>
+					
+						<xp:repeat id="repeat2" rows="30" var="c" style="margin-top:20px">
+							<xp:this.value><![CDATA[#{javascript:var d = BeanMethods.getUserDoc();
+return d.getItemValue("SearchTerms")}]]></xp:this.value>
+							<div>
+							<xp:link escape="true" text="" id="link7">
+									<i class="fa-regular fa-trash-can"></i>
+									<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="listref">
+										<xp:this.action><![CDATA[#{javascript:
+var d = BeanMethods.getUserDoc();
+var v = d.getItemValue("SearchTerms")
+if(v.contains(c)){
+	   	v.remove(c)
+	   	d.replaceItemValue("SearchTerms", v)	
+		d.save();	
+}}]]></xp:this.action>
+									</xp:eventHandler></xp:link>
+								<xp:link escape="true" text="#{c}" id="link6">
+									<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="listref">
+										<xp:this.action><![CDATA[#{javascript:viewScope.query = c
+getComponent("inputText10").setValue(c)}]]></xp:this.action>
+									</xp:eventHandler>
+								</xp:link>
+							</div>
+						</xp:repeat>
+					
+				</div>
+			</div>
+			<div class="col-md-10">
+				
+				
+				<xp:panel tagName="div" id="collref" style="" styleClass="">
+					<xp:inputText id="inputText10" styleClass="inputContainer2" style="width:300px;display:inline-block"
+						>
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="enter query and hit enter"></xp:attr>
+						</xp:this.attrs>
+						<xp:eventHandler event="onkeydown" submit="true" refreshMode="partial" refreshId="listref" disableValidators="true">
+							<xp:this.script><![CDATA[
+if(event.keyCode === 13) {
+event.preventDefault()
+return true;
+}
+ return false;]]></xp:this.script>
+							<xp:this.action><![CDATA[#{javascript:var vx = getComponent("inputText10").getValue()
+if(vx!=""){
+	
+	viewScope.query = vx
+	
+}else{
+	viewScope.remove("query")
+}
+
+}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:inputText>
+					<xp:link escape="true" rendered="#{javascript:viewScope.query != null}" text="save query" id="link5" style="margin-left:10px;font-size:10px;display:inline-block">
+						<xp:eventHandler event="onclick" submit="true" refreshMode="complete">
+							<xp:this.action><![CDATA[#{javascript:var query = getComponent("inputText10").getValue();
+if(query!=""){
+	var d = BeanMethods.getUserDoc();
+	var v = d.getItemValue("SearchTerms")
+	if(v.isEmpty()){
+		d.replaceItemValue("SearchTerms", query)	
+		d.save();
+	}else{
+		if(!v.contains(query)){
+		   	v.add(query)
+		   	d.replaceItemValue("SearchTerms", v)	
+			d.save();	
+		}
+	}
+}}]]></xp:this.action>
+						</xp:eventHandler></xp:link> 
+						<xp:panel tagName="div" id="panel1" style="margin-top:20px">
+						<xp:repeat id="repeat1" rows="10000" var="bmd" style="margin-top:10px">
+						<xp:this.value><![CDATA[#{javascript:if(viewScope.query != null){
+	return BeanMethods.ListQuickFind(viewScope.query)
+}else if(viewScope.tp == null){
+	return BeanMethods.getAllBookmarksByUser()
+}else if(viewScope.tp == 1){
+	return BeanMethods.getAllBookmarksByUserAndType("1")
+}else if(viewScope.tp == 2){
+	return BeanMethods.getAllBookmarksByUserAndType("2")
+}else if(viewScope.tp == 3){
+	return BeanMethods.getAllBookmarksByUserAndType("3")
+}}]]></xp:this.value>
+						<xp:panel id="bookmarks" styleClass="bookmarks">
+							<xp:this.data>
+								<xp:dominoDocument var="bookd" action="openDocument" documentId="#{bmd}" formName="Bookmark"
+									computeWithForm="onsave">
+								</xp:dominoDocument>
+							</xp:this.data>
+							<xc:ccBookmarkDisplay></xc:ccBookmarkDisplay>
+						</xp:panel>
+					</xp:repeat>
+					</xp:panel>
+				</xp:panel>
+			</div>
+		</div>
+	</xp:panel>
+</xp:view>

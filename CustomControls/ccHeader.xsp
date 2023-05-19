@@ -7,7 +7,7 @@ title==""? "Web Start":title}]]></xp:this.pageTitle>
 			<i class="fa fa-home"></i>
 			<xp:link escape="true" id="link6">
 				<xp:this.text><![CDATA[#{javascript:var title = BeanMethods.getPageDoc().getItemValueString("Title") 
-title==""? "WEB START":title}]]></xp:this.text>
+title==""? "Desktop":title}]]></xp:this.text>
 				<xp:eventHandler event="onclick" submit="false">
 					<xp:this.script><![CDATA[XSP.showContent("#{id:dynC}","bm")]]></xp:this.script>
 				</xp:eventHandler>
@@ -15,9 +15,24 @@ title==""? "WEB START":title}]]></xp:this.text>
 					<xp:this.action><![CDATA[#{javascript:context.reloadPage()}]]></xp:this.action>
 				</xp:eventHandler>
 			</xp:link>
+			&#160;|&#160;
+			<xp:link escape="true" id="link4" text="Mobile">
+				<xp:eventHandler event="onclick" submit="false">
+					<xp:this.script><![CDATA[XSP.showContent("#{id:dynC}","mobile")]]></xp:this.script>
+				</xp:eventHandler>
+			</xp:link>
+			&#160;|&#160;
+			<xp:link escape="true" id="link5" text="List">
+				<xp:eventHandler event="onclick" submit="false">
+					<xp:this.script><![CDATA[XSP.showContent("#{id:dynC}","list")]]></xp:this.script>
+				</xp:eventHandler>
+			</xp:link>
+			
 		</div>
 		<div class="col-md-4">
+		<!-- 
 			<xc:ccSearchAll></xc:ccSearchAll>
+			 -->
 		</div>
 		<div class="col-md-4">
 			<span style="float:right">

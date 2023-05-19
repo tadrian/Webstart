@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <note default='true' class='icon' xmlns='http://www.lotus.com/dxl' version='12.0'
  maintenanceversion='2.1' replicaid='C1258962006EF9E0'>
-<noteinfo noteid='126' unid='36344AE665464081C125891C006739CF' sequence='6'>
+<noteinfo noteid='126' unid='36344AE665464081C125891C006739CF' sequence='13'>
 <created><datetime>20221218T194730,07+01</datetime></created>
-<modified><datetime dst='true'>20230516T135436,37+02</datetime></modified>
-<revised><datetime dst='true'>20230516T135436,36+02</datetime></revised>
-<lastaccessed><datetime dst='true'>20230516T135436,36+02</datetime></lastaccessed>
+<modified><datetime dst='true'>20230519T141123,89+02</datetime></modified>
+<revised><datetime dst='true'>20230519T141123,88+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20230519T141123,88+02</datetime></lastaccessed>
 <addedtofile><datetime dst='true'>20230509T152456,48+02</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<wassignedby><name>CN=Thomas Adrian/O=Consili</name></wassignedby>
 <item name='IconBitmap' summary='true'>
 <rawitemdata type='6'>
 AiAgAQAA///////wD///4Af//8AD//4AAH/8AAA/+AAAH/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAA
@@ -26,13 +27,12 @@ AAAAUEECICABAAD/////+A4DgA==
 <item name='$LaunchXPageRunOnServer'><text>0</text></item>
 <item name='$TemplateServerName'><text>CN=Thomas Adrian/O=Consili</text></item>
 <item name='$LargeSummary'><text>0</text></item>
-<item name='$PIRCRefreshModTime'><datetime dst='true'>20230509T151946,12+02</datetime></item>
-<item name='$TemplateModTime'><datetime dst='true'>20230412T124650,77+02</datetime></item>
-<item name='$TemplateFileName'><text>c:\Notes\Data\webstart_v1.ntf</text></item>
 <item name='$Daos'><text>0</text></item>
 <item name='$DefaultFrameset'><text>Start</text></item>
 <item name='$DefaultXPage'><text>start.xsp</text></item>
-<item name='$TITLE'><text>Bookm</text></item>
 <item name='$Flags'><text>Jz7qNHZFn!</text></item>
-<item name='$FlagsNoRefresh'><text>rv</text></item></note>
+<item name='$TITLE'><text>Bookm</text></item>
+<item name='$PIRCRefreshModTime'><datetime dst='true'>20230519T141035,45+02</datetime></item>
+<item name='$TemplateModTime'><datetime dst='true'>20230519T135651,39+02</datetime></item>
+<item name='$TemplateFileName'><text>c:\Notes\Data\Bookmbu20230519.ntf</text></item></note>
 

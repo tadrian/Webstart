@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="filter" maintenanceversion="2.1" replicaid="C1258962006EF9E0" version="12.0">
-<noteinfo noteid="3c62" sequence="7" unid="CC58C99B78E344EFC12589850064B28D">
+<noteinfo noteid="3c62" sequence="12" unid="CC58C99B78E344EFC12589850064B28D">
 <created><datetime dst="true">20230402T201953,09+02</datetime></created>
-<modified><datetime dst="true">20230509T152531,11+02</datetime></modified>
-<revised><datetime dst="true">20230403T204754,67+02</datetime></revised>
-<lastaccessed><datetime dst="true">20230509T152531,10+02</datetime></lastaccessed>
+<modified><datetime dst="true">20230519T141035,62+02</datetime></modified>
+<revised><datetime dst="true">20230516T135457,93+02</datetime></revised>
+<lastaccessed><datetime dst="true">20230519T141035,61+02</datetime></lastaccessed>
 <addedtofile><datetime dst="true">20230509T152531,10+02</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Tommy Valand/O=PPN</name><name>CN=CN=Tommy Valand/O=PPN/O=CN=Tommy Valand/O=PPN</name><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<wassignedby><name>CN=Thomas Adrian/O=Consili</name></wassignedby>
 <item name="$TITLE" sign="true"><text>APIInspectorSSJS</text></item>
 <item name="$Flags"><text>.5834Q</text></item>
 <item name="$PublicAccess" sign="true"><text>1</text></item>
 <item name="$DesignerVersion"><text>8.5.3</text></item>
 
-<item name="$POID"><datetime dst="true">20230403T204754,67+02</datetime></item></note>
+<item name="$POID"><datetime dst="true">20230516T135457,93+02</datetime></item></note>

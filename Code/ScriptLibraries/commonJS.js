@@ -25,7 +25,7 @@ $(function() {
 
 	var id = $("[id$='dynC']").attr("id")
 	x$(id).append("<div>hold on, getting your data...</div>")
-	XSP.showContent(id,"bm")
+	XSP.showContent(id,"bm") 
 	
 	$(window).on('focus', function() {
 		//keepSessionAlive()
@@ -36,6 +36,25 @@ $(function() {
 			"ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
 			.find(".portlet-header").addClass("ui-widget-header ui-corner-all");
 	//enableSortableBoxesWhenActive()
+	/*
+	var dropdownMenu = $('.dropdown-menu');
+    var items = [
+        {text: 'Item 1', url: '#'},
+        {text: 'Item 2', url: '#'},
+        {text: 'Item 3', url: '#'}
+    ];
+    $.each(items, function(index, item) {
+        var listItem = $('<li>');
+        var link = $('<a>').attr('href', item.url).text(item.text);
+        listItem.append(link);
+        dropdownMenu.append(listItem);
+    });
+    $('.dropdown-toggle').click(function(e) {
+        e.preventDefault();
+        $(this).next('.dropdown-menu').toggleClass('show');
+    });
+    */
+	  
 });
 
 

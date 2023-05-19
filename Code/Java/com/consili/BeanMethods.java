@@ -512,6 +512,74 @@ public class BeanMethods {
 		nvec.recycle();
 		return v;
 	}
+	
+	// Bookmark Listview
+	public ArrayList<String> getAllBookmarksByUserAndType(String type) throws NotesException {
+
+		if(userid.isEmpty() || type.isEmpty()) return null;
+		
+		db = ExtLibUtil.getCurrentDatabase();
+		ArrayList<String> v = new java.util.ArrayList<String>();
+		String key = "Bookmark_USID_" + userid + "_TP_" + type;
+		ViewEntryCollection nvec = db.getView("LookupKey").getAllEntriesByKey(key, true);
+		ViewEntry entry = nvec.getFirstEntry();
+		while (entry != null) {
+			v.add(entry.getNoteID());
+			ViewEntry temp = entry;
+			entry = nvec.getNextEntry(entry);
+			temp.recycle();
+		}
+		nvec.recycle();
+		return v;
+	}
+	
+	public ArrayList<String> ListQuickFind(String query) throws NotesException {
+
+		db = ExtLibUtil.getCurrentDatabase();
+			View searchView = db.getView("Search");
+			ViewEntryCollection nvec = searchView.getAllEntriesByKey(this.userid, false);
+			nvec.FTSearch(query + "*");
+			if (nvec.getCount() == 0) {
+				return null;
+			}
+			ArrayList<String> v = new java.util.ArrayList<String>();
+			ViewEntry entry = nvec.getFirstEntry();
+			while (entry != null) {
+				v.add(entry.getNoteID());
+				ViewEntry temp = entry;
+				entry = nvec.getNextEntry(entry);
+				temp.recycle();
+			}
+			nvec.recycle();
+			return v;
+	}
+	
+	
+	// Bookmark Listview
+	public ArrayList<String> getAllBookmarksByUser() throws NotesException {
+		try {
+
+			if(userid.isEmpty()) return null;
+			db = ExtLibUtil.getCurrentDatabase();
+			ArrayList<String> v = new java.util.ArrayList<String>();
+			String key = "Bookmark_USID_" + userid;
+			ViewEntryCollection nvec = db.getView("LookupKey").getAllEntriesByKey(key, true);
+			ViewEntry entry = nvec.getFirstEntry();
+			while (entry != null) {
+				v.add(entry.getNoteID());
+				ViewEntry temp = entry;
+				entry = nvec.getNextEntry(entry);
+				temp.recycle();
+			}
+			nvec.recycle();
+			return v;
+			
+		}catch(Exception e){
+			Logger.LogError(e.toString());
+			
+		}
+		return null;
+	}
 
 	public static Vector<String> mergeVectors(Vector<String> v1, Vector<String> v2) {
 		Vector<String> result = new Vector<String>();

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+
+
+	<xp:this.resources>
+		<xp:script src="/commonJS.js" clientSide="true"></xp:script>
+	</xp:this.resources>
+	
+	<div class="dropdown">
+    
+    <xp:link styleClass="dropdown-toggle" escape="true" text="DD" id="link1">
+    <xp:this.attrs>
+    	<xp:attr name="data-toggle" value="dropdown"></xp:attr>
+    </xp:this.attrs>
+    <xp:eventHandler event="onclick" submit="false">
+    	<xp:this.script><![CDATA[var id = "#{id:dynP}"
+console.log(id)
+XSP.showContent(id,"bmx")]]></xp:this.script>
+    </xp:eventHandler></xp:link> 
+    
+   
+    <ul class="dropdown-menu">
+   	
+   	
+   		<xe:dynamicContent id="dynP">
+   			<xp:this.facets>
+   				<xp:span xp:key="bmx">
+   					<li>
+   						<a href="#">HTML</a>
+   					</li>
+   					<li>
+   						<a href="#">CSS</a>
+   					</li>
+   					<li>
+   						<a href="#">JavaScript</a>
+   					</li>
+   				</xp:span>
+   			</xp:this.facets>
+   		</xe:dynamicContent>
+    </ul>
+  </div>
+	
+	
+</xp:view>

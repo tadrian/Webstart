@@ -67,14 +67,20 @@ title==""? "WEB START":title}]]></xp:this.pageTitle>
 		
 		
 		<xp:panel tagName="div" id="bref" styleClass="row">
-		<xc:ccPageContent></xc:ccPageContent>
-			<xe:dynamicContent id="dynC">
+		
+			<xe:dynamicContent id="dynC" partialEvents="true">
 				<xp:this.facets>
 					<xp:span xp:key="bm">
-						
+						<xc:ccPageContent></xc:ccPageContent>
 					</xp:span>
 					<xp:span xp:key="search">
 						<xc:ccSearch></xc:ccSearch>
+					</xp:span>
+					<xp:span xp:key="mobile">
+						<xc:ccPageContentMobile></xc:ccPageContentMobile>
+					</xp:span>
+					<xp:span xp:key="list">
+						<xc:ccBookmarkList></xc:ccBookmarkList>
 					</xp:span>
 				</xp:this.facets>
 			</xe:dynamicContent>
@@ -83,7 +89,7 @@ title==""? "WEB START":title}]]></xp:this.pageTitle>
 
 
 <!-- 
-	
+	Note: below dialogs require refresh of "bref" to close
  -->
 
 	<xc:ccMoveBoxToNewTabDlg></xc:ccMoveBoxToNewTabDlg>

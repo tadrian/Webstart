@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="filter" maintenanceversion="2.1" replicaid="C1258962006EF9E0" version="12.0">
-<noteinfo noteid="aa6" sequence="8" unid="65E09259088F37C1C1258986006DBF31">
+<noteinfo noteid="aa6" sequence="13" unid="65E09259088F37C1C1258986006DBF31">
 <created><datetime dst="true">20230403T215843,69+02</datetime></created>
-<modified><datetime dst="true">20230509T152509,05+02</datetime></modified>
-<revised><datetime dst="true">20230403T220021,51+02</datetime></revised>
-<lastaccessed><datetime dst="true">20230509T152509,04+02</datetime></lastaccessed>
+<modified><datetime dst="true">20230519T141035,55+02</datetime></modified>
+<revised><datetime dst="true">20230516T135457,89+02</datetime></revised>
+<lastaccessed><datetime dst="true">20230519T141035,54+02</datetime></lastaccessed>
 <addedtofile><datetime dst="true">20230509T152509,04+02</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Thomas Adrian/O=Consili</name></updatedby>
+<wassignedby><name>CN=Thomas Adrian/O=Consili</name></wassignedby>
 <item name="$TITLE" sign="true"><text>addbm</text></item>
 <item name="$Flags"><text>h534Q</text></item>
 <item name="$PublicAccess" sign="true"><text>1</text></item>
 <item name="$DesignerVersion"><text>8.5.3</text></item>
-<item name="$POID"><datetime dst="true">20230403T220021,51+02</datetime></item></note>
+<item name="$POID"><datetime dst="true">20230516T135457,89+02</datetime></item></note>

@@ -1,4 +1,4 @@
-var debugMode = true;
+var debugMode = false;
 
 XSP.addOnLoad(function() {
 	hijackAndPublishPartialRefresh();
@@ -60,19 +60,25 @@ function hijackAndPublishPartialRefresh(){
 dojo.subscribe( 'partialrefresh-init', null, function( method, form, refreshId ){
 	if(debugMode) console.log("init " + method + " " + refreshId)
 		x$(refreshId).css("border","1px solid #F1F1F1")
+		//x$(refreshId).css("border","1px solid red")
 		//if(debugMode) console.log("init " + refreshId)
 });
 
 dojo.subscribe( 'partialrefresh-start', null, function( method, form, refreshId ){
 	if(debugMode) console.log("start " + method + " " + refreshId)
+	//x$(refreshId).css("border","1px solid red")
+	
 	//x$(refreshId).css("border","1px solid green")
 	//if(debugMode) console.log("start " + refreshId)
 });
 
 dojo.subscribe( 'partialrefresh-complete', null, function( method, form, refreshId ){
 	if(debugMode) console.log("complete " + method + " " + refreshId)
-	x$(refreshId).css("border","0px solid green")
+	//x$(refreshId).css("border","0px solid green")
+	//x$(refreshId).css("border","1px solid red")
+	
 	if(method == "post"){
+		console.log("POST")
 		refreshPage(refreshId)
 	}
 	activateAll();

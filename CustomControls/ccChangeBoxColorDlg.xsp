@@ -41,7 +41,7 @@ x$(link).css("border","1px solid black")]]></xp:this.script>
 ]]></xp:this.script>
 						</xp:eventHandler></xp:button>
 					<xp:button value="Save" id="button3">
-					<xp:eventHandler event="onclick" submit="true" refreshMode="partial" disableValidators="true" refreshId="bref">
+					<xp:eventHandler event="onclick" submit="true" refreshMode="partial" disableValidators="true" refreshId="repeatBoxes">
 						<xp:this.action><![CDATA[#{javascript:boxdoc.save()
 //refreshDataPanel("bookmarks")
 var c = getComponent("changeBoxColorDlg")

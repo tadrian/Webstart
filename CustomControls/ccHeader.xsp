@@ -22,7 +22,7 @@ title==""? "Desktop":title}]]></xp:this.text>
 				</xp:eventHandler>
 			</xp:link>
 			&#160;|&#160;
-			<xp:link escape="true" id="link5" text="List">
+			<xp:link escape="true" id="link5" text="Find">
 				<xp:eventHandler event="onclick" submit="false">
 					<xp:this.script><![CDATA[XSP.showContent("#{id:dynC}","list")]]></xp:this.script>
 				</xp:eventHandler>
@@ -37,9 +37,7 @@ title==""? "Desktop":title}]]></xp:this.text>
 		<div class="col-md-4">
 			<span style="float:right">
 				<xp:panel>
-				<xp:link escape="true" text="" id="link3" value="/startm.xsp">
-					<i class="fa-solid fa-mobile-screen-button" title="Open mobile version"></i>
-				</xp:link>&#160;
+				
 				<xc:ccBookmarklet></xc:ccBookmarklet>
 					
 					

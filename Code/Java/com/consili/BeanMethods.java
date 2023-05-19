@@ -4,8 +4,11 @@ import com.ibm.xsp.extlib.util.ExtLibUtil;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
@@ -21,7 +24,8 @@ public class BeanMethods {
 	public Database db;
 	public ArrayList<String> tabDocs;
 	public Session session;
-
+	public ArrayList<Bookmark> bms = new ArrayList<Bookmark>();
+	
 	public String userid;
 	public String sessionid;
 
@@ -35,6 +39,60 @@ public class BeanMethods {
 		userTabs = new ArrayList<String>();
 		userBoxes= new ArrayList<String>();
 		this.loadNewUserSession();
+	}
+	
+	public List<String> filterBookmarksByType(String type) throws NotesException {
+		if(bms.isEmpty()){
+			getBookmarks();
+		}
+		 return bms.stream().filter(bm -> bm.getType().equals(type)).map(Bookmark::getUnid).collect(Collectors.toList());
+	}
+	
+	public List<String> sortBookmarksByTitle() throws NotesException {
+		if(bms.isEmpty()){
+			getBookmarks();
+		}
+	    return bms.stream().sorted(Comparator.comparing(Bookmark::getTitle)).map(Bookmark::getUnid).collect(Collectors.toList());
+	}
+	
+	// Store all user bookmarks in scope for easy sorting in listview
+	public void getBookmarks() throws NotesException {
+		
+		db = ExtLibUtil.getCurrentDatabase();
+		ArrayList<Bookmark> blist = new ArrayList<Bookmark>();
+		String key = "Bookmark_USID_" + userid;
+		ViewEntryCollection nvec = db.getView("LookupKey").getAllEntriesByKey(key, true);
+		
+		ViewEntry entry = nvec.getFirstEntry();
+		while (entry != null) {
+
+			Document d = entry.getDocument();
+			Bookmark b = new Bookmark();
+			b.setUniqueid(d.getItemValueString("UniqueId"));		
+			b.setCode(d.getItemValueString("UniqueId"));		
+			b.setTabid(d.getItemValueString("TabID"));	
+			b.setBoxid(d.getItemValueString("Boxid"));
+			b.setTitle(d.getItemValueString("Title"));
+			b.setColortheme(d.getItemValueString("Colortheme"));
+			b.setSummary(d.getItemValueString("Summary"));
+			b.setType(d.getItemValueString("Type"));
+			b.setUnid(d.getUniversalID());
+			blist.add(b);
+			
+			ViewEntry temp = entry;
+			entry = nvec.getNextEntry(entry);
+			temp.recycle();
+		}
+		nvec.recycle();
+		bms = blist;
+		
+		
+	}
+	
+	// not used
+	public ArrayList<String> getTitles() throws NotesException {
+		db = ExtLibUtil.getCurrentDatabase();
+		return org.openntf.Utils.Dblookup(db,"LookupKey",new org.openntf.Utils.Params(true,true,true,"Bookmark_USID_" + userid, "Title"));
 	}
 	
 	public DocumentCollection getAllDocsByKey(String key) throws NotesException {

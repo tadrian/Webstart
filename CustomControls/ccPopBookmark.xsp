@@ -13,7 +13,10 @@
 			<xe:dynamicContent id="dynP">
 				<xp:this.facets>
 					<xp:span xp:key="bmx">
-						<xp:text value="#{bookd.title}" escape="true" id="computedField4" tagName="h6" style="" styleClass="dropdown-header"></xp:text>
+						<xp:text escape="true" id="computedField4" tagName="h6" style="" styleClass="dropdown-header">
+							<xp:this.value><![CDATA[#{javascript:var str = bookd.getItemValueString("title")
+str.length>30 ? str.substring(0, 27) + "..." : str}]]></xp:this.value>
+						</xp:text>
 						<div class="dropdown-divider"></div>
 						<xp:link escape="true" rendered="#{bookd.type=='1' or bookd.type=='2'}" text="Edit" id="pop_bm_edit" styleClass="dropdown-item">
 							<i class="fa-regular fa-edit"></i>

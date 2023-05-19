@@ -21,6 +21,17 @@ viewScope.remove("query")}]]></xp:this.action>
 						</xp:eventHandler>
 					</xp:link>
 				</div>
+				<!-- 
+				<div>
+					<xp:link escape="true" text="SortedByTItle" id="link8">
+						<xp:this.style><![CDATA[#{javascript:viewScope.tp == 4 && viewScope.query == null ? "font-weight:bold":""}]]></xp:this.style>
+						<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="listref" disableValidators="true">
+							<xp:this.action><![CDATA[#{javascript:viewScope.tp = 4
+viewScope.remove("query")}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:link>
+				</div>
+				 -->
 				<div>
 					<xp:link escape="true" text="Text" id="link2">
 						<xp:this.style><![CDATA[#{javascript:viewScope.tp ==2 && viewScope.query == null ? "font-weight:bold":""}]]></xp:this.style>
@@ -96,7 +107,9 @@ if(vx!=""){
 }]]></xp:this.action>
 						</xp:eventHandler>
 					</xp:inputText>
-					<xp:link escape="true" rendered="#{javascript:viewScope.query != null}" text="save query" id="link5" style="margin-left:10px;font-size:10px;display:inline-block">
+					<xp:link escape="true" text="save query" id="link5" style="margin-left:10px;font-size:10px;display:inline-block">
+						<xp:this.rendered><![CDATA[#{javascript:viewScope.query != null
+			   	}]]></xp:this.rendered>
 						<xp:eventHandler event="onclick" submit="true" refreshMode="complete">
 							<xp:this.action><![CDATA[#{javascript:var query = getComponent("inputText10").getValue();
 if(query!=""){
@@ -113,29 +126,43 @@ if(query!=""){
 		}
 	}
 }}]]></xp:this.action>
-						</xp:eventHandler></xp:link> 
-						<xp:panel tagName="div" id="panel1" style="margin-top:20px">
+						</xp:eventHandler>
+					</xp:link>
+					<xp:panel tagName="div" id="panel1" style="margin-top:20px">
+						<xp:repeat id="repeat3" rows="30" var="co" rendered="false">
+							<xp:this.value><![CDATA[#{javascript:BeanMethods.setBookmarks()
+return BeanMethods.bms
+
+}]]></xp:this.value>
+							<xp:text escape="true" id="computedField4" tagName="div" style="" styleClass="">
+								<xp:this.value><![CDATA[#{javascript:co.unid}]]></xp:this.value>
+							</xp:text>
+						</xp:repeat>
 						<xp:repeat id="repeat1" rows="10000" var="bmd" style="margin-top:10px">
-						<xp:this.value><![CDATA[#{javascript:if(viewScope.query != null){
+							<xp:this.value><![CDATA[#{javascript:if(viewScope.query != null){
 	return BeanMethods.ListQuickFind(viewScope.query)
 }else if(viewScope.tp == null){
 	return BeanMethods.getAllBookmarksByUser()
 }else if(viewScope.tp == 1){
-	return BeanMethods.getAllBookmarksByUserAndType("1")
+	BeanMethods.filterBookmarksByType("1")
 }else if(viewScope.tp == 2){
-	return BeanMethods.getAllBookmarksByUserAndType("2")
+	BeanMethods.filterBookmarksByType("2")
+	
 }else if(viewScope.tp == 3){
-	return BeanMethods.getAllBookmarksByUserAndType("3")
+	BeanMethods.filterBookmarksByType("3")
+}else if(viewScope.tp == 4){
+	BeanMethods.sortBookmarksByTitle()
+	
 }}]]></xp:this.value>
-						<xp:panel id="bookmarks" styleClass="bookmarks">
-							<xp:this.data>
-								<xp:dominoDocument var="bookd" action="openDocument" documentId="#{bmd}" formName="Bookmark"
-									computeWithForm="onsave">
-								</xp:dominoDocument>
-							</xp:this.data>
-							<xc:ccBookmarkDisplay></xc:ccBookmarkDisplay>
-						</xp:panel>
-					</xp:repeat>
+							<xp:panel id="bookmarks" styleClass="bookmarks">
+								<xp:this.data>
+									<xp:dominoDocument var="bookd" action="openDocument" documentId="#{bmd}" formName="Bookmark"
+										computeWithForm="onsave">
+									</xp:dominoDocument>
+								</xp:this.data>
+								<xc:ccBookmarkDisplay></xc:ccBookmarkDisplay>
+							</xp:panel>
+						</xp:repeat>
 					</xp:panel>
 				</xp:panel>
 			</div>

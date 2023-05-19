@@ -101,8 +101,9 @@ function removeTab(tabid){
 
 
 function getUserId(){
-	var uid = getCurrentUserDoc().getItemValueString("UniqueId");
-	return uid==="" ? "-" : uid
+	//var uid = getCurrentUserDoc().getItemValueString("UniqueId");
+	return BeanMethods.getUserId();
+	//return uid==="" ? "-" : uid
 }
 
 function removeBookmarksFromBox(boxid){

@@ -146,7 +146,7 @@ function getCurrentUserDoc(){
 			var v = database.getView("LookupKey");
 			var userdocc = database.getView("LookupKey").getDocumentByKey("User_SID_" + userid,true);
 			if(userdocc!=null){
-				return userdocc;	
+				return userdocc;
 			}
 		}
 		

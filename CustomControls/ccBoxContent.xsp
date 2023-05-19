@@ -27,10 +27,11 @@ dc.getCount()==0
 								<xp:this.value><![CDATA[#{bookd.UniqueID}]]></xp:this.value>
 							</xp:attr>
 						</xp:this.attrs>
+
 						<xc:ccBookmarkDisplay></xc:ccBookmarkDisplay>
 						
 						
-						
+					
 					</xp:panel>
 				</xp:panel>
 			</xp:repeat>
